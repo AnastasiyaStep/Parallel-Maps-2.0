@@ -65,6 +65,28 @@
         alertTraffic.tag = 2;
         [alertTraffic show];
     }
+    
+    if ([segue.identifier isEqualToString:@"3dViewSegue"]) {
+        UIAlertView *alertDView = [[UIAlertView alloc] initWithTitle:@"3D view mode" message:@"Enable 3D view mode?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+        alertDView.tag = 4;
+        [alertDView show];
+    }
+    
+    if ([segue.identifier isEqualToString:@"regularView"]) {
+        mapTypeRegular = YES;
+    }
+    
+    if ([segue.identifier isEqualToString:@"hybridView"]) {
+        mapTypeHybrid = YES;
+    }
+    
+    if ([segue.identifier isEqualToString:@"satelliteView"]) {
+        mapTypeSatellite = YES;
+    }
+    
+    if ([segue.identifier isEqualToString:@"terrainView"]) {
+        mapTypeTerrain = YES;
+    }
 }
 
 - (void)alertView:(UIAlertView *)alert didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -79,10 +101,8 @@
     if (alert.tag == 2) {
         if (buttonIndex == 0) {
             trafficMode = NO;
-            NSLog(@"Success!");
         } else if (buttonIndex == 1) {
             trafficMode = YES;
-            NSLog(@"traffic");
         }
     }
     if (alert.tag == 3) {
@@ -91,6 +111,14 @@
         }
         else if (buttonIndex == 1) {
             syncMode = YES;
+        }
+    }
+    if (alert.tag == 4) {
+        if (buttonIndex == 0) {
+            DMode = NO;
+        } else if (buttonIndex == 1) {
+            DMode = YES;
+            NSLog(@"dmode yes");
         }
     }
 }

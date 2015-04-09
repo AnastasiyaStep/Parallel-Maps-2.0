@@ -31,6 +31,7 @@
 		4559A4181AAD472900FDB66E /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4559A4171AAD472900FDB66E /* GoogleMaps.bundle */; };
 		45C5F8101ACA4D9B0078540B /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C5F80F1ACA4D9B0078540B /* SidebarViewController.m */; };
 		45C5F8131ACB954E0078540B /* StreetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C5F8121ACB954E0078540B /* StreetViewController.m */; };
+		45C5F8161ACBD9950078540B /* DirectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C5F8151ACBD9950078540B /* DirectionsViewController.m */; };
 		45F7BC381ABBC812003FCE27 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F7BC371ABBC812003FCE27 /* DetailsViewController.m */; };
 		45F7BC411AC042D8003FCE27 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F7BC401AC042D8003FCE27 /* SettingsViewController.m */; };
 		45F7BC441AC0FA5B003FCE27 /* MapTypesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F7BC431AC0FA5B003FCE27 /* MapTypesViewController.m */; };
@@ -38,6 +39,9 @@
 		45F7BC4A1AC2607D003FCE27 /* PlaceAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F7BC491AC2607D003FCE27 /* PlaceAnnotation.m */; };
 		45F7BC6B1AC8F904003FCE27 /* MainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F7BC6A1AC8F904003FCE27 /* MainModel.m */; };
 		45F7BC6F1AC91C7F003FCE27 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F7BC6E1AC91C7F003FCE27 /* SWRevealViewController.m */; };
+		45FFC7CE1AD3715D0029E809 /* MapKit+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FFC7CD1AD3715D0029E809 /* MapKit+ZoomLevel.m */; };
+		45FFC7D71AD60EF30029E809 /* GQTPointQuadTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FFC7D31AD60EF30029E809 /* GQTPointQuadTree.m */; };
+		45FFC7D81AD60EF30029E809 /* GQTPointQuadTreeChild.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FFC7D51AD60EF30029E809 /* GQTPointQuadTreeChild.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +87,8 @@
 		45C5F80F1ACA4D9B0078540B /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
 		45C5F8111ACB954E0078540B /* StreetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreetViewController.h; sourceTree = "<group>"; };
 		45C5F8121ACB954E0078540B /* StreetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreetViewController.m; sourceTree = "<group>"; };
+		45C5F8141ACBD9950078540B /* DirectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionsViewController.h; sourceTree = "<group>"; };
+		45C5F8151ACBD9950078540B /* DirectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionsViewController.m; sourceTree = "<group>"; };
 		45F7BC371ABBC812003FCE27 /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		45F7BC3A1ABBC83C003FCE27 /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DetailsViewController.h; path = ../DetailsViewController.h; sourceTree = "<group>"; };
 		45F7BC3F1AC042D8003FCE27 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -97,6 +103,15 @@
 		45F7BC6A1AC8F904003FCE27 /* MainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainModel.m; sourceTree = "<group>"; };
 		45F7BC6D1AC91C7F003FCE27 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		45F7BC6E1AC91C7F003FCE27 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		45FFC7CC1AD3715D0029E809 /* MapKit+ZoomLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MapKit+ZoomLevel.h"; sourceTree = "<group>"; };
+		45FFC7CD1AD3715D0029E809 /* MapKit+ZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MapKit+ZoomLevel.m"; sourceTree = "<group>"; };
+		45FFC7D01AD60EF30029E809 /* GQTBounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQTBounds.h; sourceTree = "<group>"; };
+		45FFC7D11AD60EF30029E809 /* GQTPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQTPoint.h; sourceTree = "<group>"; };
+		45FFC7D21AD60EF30029E809 /* GQTPointQuadTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQTPointQuadTree.h; sourceTree = "<group>"; };
+		45FFC7D31AD60EF30029E809 /* GQTPointQuadTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQTPointQuadTree.m; sourceTree = "<group>"; };
+		45FFC7D41AD60EF30029E809 /* GQTPointQuadTreeChild.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQTPointQuadTreeChild.h; sourceTree = "<group>"; };
+		45FFC7D51AD60EF30029E809 /* GQTPointQuadTreeChild.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQTPointQuadTreeChild.m; sourceTree = "<group>"; };
+		45FFC7D61AD60EF30029E809 /* GQTPointQuadTreeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQTPointQuadTreeItem.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +149,7 @@
 		4559A3C41AAD38D900FDB66E = {
 			isa = PBXGroup;
 			children = (
+				45FFC7CF1AD60EC80029E809 /* Google maps utils */,
 				45F7BC6C1AC91C68003FCE27 /* SWLRevealViewController */,
 				4559A3F81AAD3AA600FDB66E /* Frameworks */,
 				4559A3CF1AAD38D900FDB66E /* Parallel Maps */,
@@ -233,6 +249,8 @@
 				45F7BC401AC042D8003FCE27 /* SettingsViewController.m */,
 				45F7BC421AC0FA5B003FCE27 /* MapTypesViewController.h */,
 				45F7BC431AC0FA5B003FCE27 /* MapTypesViewController.m */,
+				45C5F8141ACBD9950078540B /* DirectionsViewController.h */,
+				45C5F8151ACBD9950078540B /* DirectionsViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -251,6 +269,8 @@
 				45F7BC491AC2607D003FCE27 /* PlaceAnnotation.m */,
 				45F7BC691AC8F904003FCE27 /* MainModel.h */,
 				45F7BC6A1AC8F904003FCE27 /* MainModel.m */,
+				45FFC7CC1AD3715D0029E809 /* MapKit+ZoomLevel.h */,
+				45FFC7CD1AD3715D0029E809 /* MapKit+ZoomLevel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -269,6 +289,21 @@
 				45F7BC6E1AC91C7F003FCE27 /* SWRevealViewController.m */,
 			);
 			name = SWLRevealViewController;
+			sourceTree = "<group>";
+		};
+		45FFC7CF1AD60EC80029E809 /* Google maps utils */ = {
+			isa = PBXGroup;
+			children = (
+				45FFC7D01AD60EF30029E809 /* GQTBounds.h */,
+				45FFC7D11AD60EF30029E809 /* GQTPoint.h */,
+				45FFC7D21AD60EF30029E809 /* GQTPointQuadTree.h */,
+				45FFC7D31AD60EF30029E809 /* GQTPointQuadTree.m */,
+				45FFC7D41AD60EF30029E809 /* GQTPointQuadTreeChild.h */,
+				45FFC7D51AD60EF30029E809 /* GQTPointQuadTreeChild.m */,
+				45FFC7D61AD60EF30029E809 /* GQTPointQuadTreeItem.h */,
+			);
+			name = "Google maps utils";
+			path = "Parallel Maps";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,14 +407,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45FFC7D71AD60EF30029E809 /* GQTPointQuadTree.m in Sources */,
 				4559A3D91AAD38D900FDB66E /* ViewController.m in Sources */,
 				45F7BC381ABBC812003FCE27 /* DetailsViewController.m in Sources */,
 				45F7BC411AC042D8003FCE27 /* SettingsViewController.m in Sources */,
 				4559A3D61AAD38D900FDB66E /* AppDelegate.m in Sources */,
 				45F7BC4A1AC2607D003FCE27 /* PlaceAnnotation.m in Sources */,
+				45C5F8161ACBD9950078540B /* DirectionsViewController.m in Sources */,
+				45FFC7D81AD60EF30029E809 /* GQTPointQuadTreeChild.m in Sources */,
 				45F7BC6B1AC8F904003FCE27 /* MainModel.m in Sources */,
 				4559A3D31AAD38D900FDB66E /* main.m in Sources */,
 				45C5F8131ACB954E0078540B /* StreetViewController.m in Sources */,
+				45FFC7CE1AD3715D0029E809 /* MapKit+ZoomLevel.m in Sources */,
 				45F7BC6F1AC91C7F003FCE27 /* SWRevealViewController.m in Sources */,
 				45F7BC471AC113F8003FCE27 /* SearchListViewController.m in Sources */,
 				45F7BC441AC0FA5B003FCE27 /* MapTypesViewController.m in Sources */,

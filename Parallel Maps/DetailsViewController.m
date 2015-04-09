@@ -20,7 +20,7 @@
 @synthesize mapView, addressLabel, zipCode;
 
 - (void) viewWillAppear:(BOOL)animated {
-    self.navigationController.navigationBar.hidden = NO;
+    //self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void) viewDidLoad {
@@ -33,7 +33,6 @@
     [mapView setRegion:adjustedRegion animated:YES];
     
     addressLabel.text = address;
-    //zipCode.text =
     
     SWRevealViewController *revealViewController = self.revealViewController;
     if (revealViewController) {
@@ -44,8 +43,12 @@
 }
 
 - (IBAction)backButton:(id)sender {
+    UINavigationController *mainNavController = [self.storyboard instantiateViewControllerWithIdentifier:@"mainNavController"];
     ViewController *mainController = [self.storyboard instantiateViewControllerWithIdentifier:@"main"];
-    [self.navigationController pushViewController:mainController animated:YES];
+    [mainNavController pushViewController:mainController animated:YES];
+    [mainNavController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    
+    [self presentViewController:mainController animated:YES completion:NULL];
 }
 
 @end

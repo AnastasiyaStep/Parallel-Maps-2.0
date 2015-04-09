@@ -10,8 +10,12 @@
 #import <UIKit/UIKit.h>
 #import "ViewController.h"
 
-@interface StreetViewController : UIViewController
+@class GMSPanoramaService, GMSPanorama;
+
+@interface StreetViewController : UIViewController <GMSPanoramaViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+
+-(void)getStreetViewForCoordinate:(CLLocationCoordinate2D)coordinate;
 
 @end

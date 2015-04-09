@@ -11,8 +11,10 @@
 #import <CoreLocation/CoreLocation.h>
 #import "ViewController.h"
 
-@interface SearchListViewController : UITableViewController <UITextFieldDelegate, UISearchBarDelegate, CLLocationManagerDelegate>
+@interface SearchListViewController : UIViewController <UITextFieldDelegate, UISearchBarDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) NSArray *places;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *viewAllButton;
 
 @end

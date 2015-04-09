@@ -15,7 +15,11 @@
 #import "DetailsViewController.h"
 #import "SettingsViewController.h"
 
-@interface ViewController : UIViewController <GMSMapViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate> {
+#import "GQTPointQuadTree.h"
+#import "GQTPointQuadTreeChild.h"
+#import "GQTPointQuadTreeItem.h"
+
+@interface ViewController : UIViewController <GMSMapViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate> {
     CLGeocoder *geocoder;
 }
 
@@ -27,11 +31,11 @@
 @property (nonatomic, retain) MKPolyline* routeLine;
 @property (nonatomic, retain) MKPolylineView* routeLineView;
 @property (nonatomic, assign) CLLocationCoordinate2D from, to;
-@property (nonatomic) BOOL *mapTypeSatellite, *mapTypeHybrid, *mapTypeTerrain, *mapTypeRegular, *syncProperty;
 @property (nonatomic, strong) NSArray *mapItemList;
 @property (nonatomic, assign) MKCoordinateRegion boundingRegion;
 @property NSMutableArray *detailSteps;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@property (nonatomic, retain) CLLocation *initialLocation;
 
 - (MKCoordinateSpan)coordinateSpanWithMapView:(MKMapView *)mapView
                              centerCoordinate:(CLLocationCoordinate2D)centerCoordinate
@@ -48,7 +52,5 @@
 - (void)dViewButtonDidTap2:(UIButton *)tappedButton;
 
 - (void)locationButtonDidTap:(UIButton *)tappedButton;
-
-- (void)settingsButtonDidTap:(UIButton *)tappedButton;
 
 @end

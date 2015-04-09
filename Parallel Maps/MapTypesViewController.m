@@ -19,29 +19,29 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //NSLog(@"%d", indexPath.row);
     ViewController *mainController = [self.storyboard instantiateViewControllerWithIdentifier:@"main"];
     
     if (indexPath.row == 3) {
-        mainController.mapTypeTerrain = YES;
+        mapTypeTerrain = YES;
+        NSLog(@"terrain");
     }
     if (indexPath.row == 0) {
-        mainController.mapTypeRegular = YES;
+        mapTypeRegular = YES;
+        NSLog(@"regular");
     }
     if (indexPath.row == 1) {
-        mainController.mapTypeSatellite = YES;
+        mapTypeSatellite = YES;
+        NSLog(@"satellite");
     }
     if (indexPath.row == 2) {
-        mainController.mapTypeHybrid = YES;
+        mapTypeHybrid = YES;
+        NSLog(@"hybrid");
     }
     [self.navigationController pushViewController:mainController animated:YES];
 }
 
 - (IBAction)doneButtonClicked:(id)sender {
     ViewController *mainController = [self.storyboard instantiateViewControllerWithIdentifier:@"main"];
-    
-    //mainController.mapTypeSatellite = YES;
-    
     [self.navigationController pushViewController:mainController animated:YES];
 }
 

@@ -22,18 +22,17 @@
     for (SettingsViewController *table in self.view.subviews) {
         if ([table isKindOfClass:[UILabel class]]) {
             [(UILabel *)table setFont:[UIFont fontWithName:@"Helvetica" size:14]];
-            //NSLog(@"here here");
         }
     }
-    for (NSString *strFamilyName in [UIFont familyNames]) {
+    //for (NSString *strFamilyName in [UIFont familyNames]) {
         //for (NSString *strFontName in [UIFont fontNamesForFamilyName:strFamilyName]) {
             //NSLog(@"%@", strFontName);
         //}
-    }
+    //}
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.navigationController.navigationBar.hidden = NO;
+    //self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)viewDidLoad {
