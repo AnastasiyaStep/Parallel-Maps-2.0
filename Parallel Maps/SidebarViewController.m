@@ -74,18 +74,30 @@
     
     if ([segue.identifier isEqualToString:@"regularView"]) {
         mapTypeRegular = YES;
+        mapTypeHybrid = NO;
+        mapTypeSatellite = NO;
+        mapTypeTerrain = NO;
     }
     
     if ([segue.identifier isEqualToString:@"hybridView"]) {
         mapTypeHybrid = YES;
+        mapTypeSatellite = NO;
+        mapTypeRegular = NO;
+        mapTypeTerrain = NO;
     }
     
     if ([segue.identifier isEqualToString:@"satelliteView"]) {
         mapTypeSatellite = YES;
+        mapTypeRegular = NO;
+        mapTypeHybrid = NO;
+        mapTypeTerrain = NO;
     }
     
     if ([segue.identifier isEqualToString:@"terrainView"]) {
         mapTypeTerrain = YES;
+        mapTypeRegular = NO;
+        mapTypeSatellite = NO;
+        mapTypeHybrid = NO;
     }
 }
 
@@ -118,7 +130,6 @@
             DMode = NO;
         } else if (buttonIndex == 1) {
             DMode = YES;
-            NSLog(@"dmode yes");
         }
     }
 }

@@ -84,4 +84,11 @@
     [self setRegion:region animated:NO];
 }
 
+- (void)setZoom:(NSUInteger)zoomLevel mapView:(MKMapView *)mapView animated:(BOOL)animated {
+    zoomLevel = MIN(zoomLevel, 28);
+    MKCoordinateSpan span = [self coordinateSpanWithMapView:self centerCoordinate:mapView.centerCoordinate andZoomLevel:zoomLevel];
+    MKCoordinateRegion region = MKCoordinateRegionMake(mapView.centerCoordinate, span);
+    
+    [self setRegion:region animated:NO];
+}
 @end

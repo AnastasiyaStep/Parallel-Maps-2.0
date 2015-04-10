@@ -13,7 +13,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rSx-ur-lJ5">
@@ -30,24 +30,18 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.79999999999999982" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Address" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wxo-tE-3SM">
-                                <rect key="frame" x="0.0" y="283" width="172" height="33"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Qd7-WH-1ba" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="1yM-Ux-ZJy"/>
                             <constraint firstAttribute="width" secondItem="Hjq-nT-hhg" secondAttribute="width" id="3b1-6s-fWc"/>
                             <constraint firstItem="rSx-ur-lJ5" firstAttribute="height" secondItem="Hjq-nT-hhg" secondAttribute="height" id="5Do-va-sRv"/>
-                            <constraint firstItem="Wxo-tE-3SM" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Voc-w5-QJQ"/>
                             <constraint firstItem="rSx-ur-lJ5" firstAttribute="width" secondItem="Hjq-nT-hhg" secondAttribute="width" id="eZp-pQ-zAW"/>
                         </constraints>
                     </view>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem title="Item" width="586" style="plain" id="QLE-wx-cBf"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Main Controller" id="1J6-pA-3nP">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="J9b-eV-nnE"/>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Lxa-b1-9BQ">
@@ -60,19 +54,18 @@
                                 <segue destination="ne9-a5-7wm" kind="show" id="geA-7l-8Fu"/>
                             </connections>
                         </button>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="GtM-5w-bWK">
+                        <barButtonItem key="rightBarButtonItem" title="Locate" id="GtM-5w-bWK">
                             <connections>
                                 <action selector="locationButton:" destination="BYZ-38-t0r" id="fLm-Lc-n2i"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <connections>
-                        <outlet property="addressLabel" destination="Wxo-tE-3SM" id="3CT-uN-DWN"/>
                         <outlet property="googleMapsView" destination="Hjq-nT-hhg" id="Gus-WF-Lmx"/>
                         <outlet property="mapKitView" destination="rSx-ur-lJ5" id="7JU-7t-5QJ"/>
                         <outlet property="sidebarButton" destination="J9b-eV-nnE" id="i81-5M-asp"/>
+                        <outlet property="toolbarText" destination="QLE-wx-cBf" id="MD8-KC-cES"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -188,6 +181,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSL-3j-9mg">
                                 <rect key="frame" x="152" y="451" width="46" height="30"/>
                                 <state key="normal" title="Back">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -205,13 +199,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Location Details " id="GzT-Pa-0py">
                         <barButtonItem key="backBarButtonItem" title="Back" id="x3u-Qq-udE"/>
-                        <barButtonItem key="leftBarButtonItem" image="menu" id="mZJ-Ud-wyG"/>
                     </navigationItem>
                     <connections>
                         <outlet property="MapView" destination="SjN-mB-Kqc" id="7rJ-nV-Kts"/>
                         <outlet property="addressLabel" destination="tkd-mG-6mC" id="bBk-q1-Iq5"/>
                         <outlet property="mapView" destination="SjN-mB-Kqc" id="ZKD-JM-7ul"/>
-                        <outlet property="sidebarButton" destination="mZJ-Ud-wyG" id="30Z-gp-Nqy"/>
                         <outlet property="zipCode" destination="SlX-di-GB0" id="Lcf-SD-OlL"/>
                     </connections>
                 </viewController>
@@ -549,7 +541,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Pq-Bo-SCG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1383" y="-699"/>
+            <point key="canvasLocation" x="1375" y="-701"/>
         </scene>
         <!--Street View-->
         <scene sceneID="i6v-xj-Sp3">
@@ -595,7 +587,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gAV-42-x48" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-147" y="423"/>
+            <point key="canvasLocation" x="-169" y="253"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="2qU-RD-9Fi">
@@ -625,7 +617,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="BYZ-38-t0r" kind="custom" identifier="showHome" customClass="SWRevealViewControllerSeguePushController" id="hjM-oF-rD3"/>
+                                            <segue destination="K4l-A9-vLf" kind="custom" identifier="showHome" customClass="SWRevealViewControllerSeguePushController" id="eW6-lb-y41"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="traffic" id="c3O-0o-YAB">
@@ -645,27 +637,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="BYZ-38-t0r" kind="custom" identifier="showTraffic" customClass="SWRevealViewControllerSeguePushController" id="cTW-PV-KH5"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="synchronisation" id="htm-oS-7Lw">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="htm-oS-7Lw" id="Iv2-Gh-eCy">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sync" translatesAutoresizingMaskIntoConstraints="NO" id="ky8-pq-hHr">
-                                                    <rect key="frame" x="23" y="3" width="38" height="38"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Synchronisation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ph6-tc-SmB">
-                                                    <rect key="frame" x="69" y="12" width="173" height="21"/>
-                                                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="BYZ-38-t0r" kind="custom" identifier="syncSegue" customClass="SWRevealViewControllerSeguePushController" id="OXM-uA-oYL"/>
+                                            <segue destination="K4l-A9-vLf" kind="custom" identifier="showTraffic" customClass="SWRevealViewControllerSeguePushController" id="Bsr-bH-dea"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="3DView" id="tiS-ba-XRF">
@@ -685,7 +657,27 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="BYZ-38-t0r" kind="custom" identifier="3dViewSegue" customClass="SWRevealViewControllerSeguePushController" id="T2M-Zz-vF8"/>
+                                            <segue destination="K4l-A9-vLf" kind="custom" identifier="3dViewSegue" customClass="SWRevealViewControllerSeguePushController" id="4EZ-il-BV4"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="synchronisation" id="htm-oS-7Lw">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="htm-oS-7Lw" id="Iv2-Gh-eCy">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sync" translatesAutoresizingMaskIntoConstraints="NO" id="ky8-pq-hHr">
+                                                    <rect key="frame" x="23" y="3" width="38" height="38"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Synchronisation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ph6-tc-SmB">
+                                                    <rect key="frame" x="69" y="12" width="173" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="K4l-A9-vLf" kind="custom" identifier="syncSegue" customClass="SWRevealViewControllerSeguePushController" id="eUZ-nd-WlN"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="directions" id="Ofy-6M-Dno">
@@ -769,7 +761,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="BYZ-38-t0r" kind="custom" identifier="regularView" customClass="SWRevealViewControllerSeguePushController" id="mQX-T8-0YM"/>
+                                            <segue destination="K4l-A9-vLf" kind="custom" identifier="regularView" customClass="SWRevealViewControllerSeguePushController" id="LyS-FK-vSN"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="satellite" id="jDa-Gz-2tY">
@@ -789,7 +781,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="BYZ-38-t0r" kind="custom" identifier="satelliteView" customClass="SWRevealViewControllerSeguePushController" id="A9Y-9Q-NGZ"/>
+                                            <segue destination="K4l-A9-vLf" kind="custom" identifier="satelliteView" customClass="SWRevealViewControllerSeguePushController" id="4DQ-dP-VWq"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="hybrid" id="PUm-v8-JwJ">
@@ -809,7 +801,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="BYZ-38-t0r" kind="custom" identifier="hybridView" customClass="SWRevealViewControllerSeguePushController" id="vVC-DR-sXw"/>
+                                            <segue destination="K4l-A9-vLf" kind="custom" identifier="hybridView" customClass="SWRevealViewControllerSeguePushController" id="bJi-2n-3Kb"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="terrain" id="BnW-nN-xdg">
@@ -829,7 +821,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="BYZ-38-t0r" kind="custom" identifier="terrainView" customClass="SWRevealViewControllerSeguePushController" id="y71-6C-yU6"/>
+                                            <segue destination="K4l-A9-vLf" kind="custom" identifier="terrainView" customClass="SWRevealViewControllerSeguePushController" id="tkf-SX-O9s"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -844,25 +836,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zfs-KF-ZkX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="252" y="-444"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="uVA-PC-ROP">
-            <objects>
-                <navigationController storyboardIdentifier="detailsNavController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qpD-gZ-Upu" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="W6M-pa-Su3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.43080253340000002" green="0.68297571209999997" blue="0.73526664399999997" alpha="1" colorSpace="calibratedRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="mrd-xf-Y3l" kind="relationship" relationship="rootViewController" id="Coa-Ll-kvR"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TVB-K8-gAw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2765" y="-1641"/>
         </scene>
         <!--Settings Navigation Controller Scene-->
         <scene sceneID="hYP-nD-zV5">
@@ -956,7 +929,7 @@
         <image name="traffic" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gyT-9u-9R6"/>
+        <segue reference="tkf-SX-O9s"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

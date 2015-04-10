@@ -13,5 +13,5 @@
     CLLocationDegrees addressLat = 35.66, addressLong = 139.79;
     NSString *address = @"Unknown";
     BOOL mapTypeSatellite = NO, mapTypeHybrid = NO, mapTypeTerrain = NO, mapTypeRegular = NO;
-    CLLocationCoordinate2D globalCoordinate, pinCoordinate;
+    CLLocationCoordinate2D globalCoordinate, pinCoordinate, globalRegion;
 @end

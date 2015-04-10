@@ -15,4 +15,8 @@
                    zoomLevel:(NSUInteger)zoomLevel
                     animated:(BOOL)animated;
 
+- (void) setZoom:(NSUInteger)zoomLevel
+         mapView:(MKMapView*)mapView
+        animated:(BOOL)animated;
+
 @end

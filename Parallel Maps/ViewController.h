@@ -26,7 +26,6 @@
 @property (strong, nonatomic) IBOutlet MKMapView *mapKitView;
 @property (strong, nonatomic) IBOutlet GMSMapView *googleMapsView;
 @property (nonatomic, strong) CLGeocoder *geocoder;
-@property (strong, nonatomic) IBOutlet UILabel *addressLabel;
 @property (nonatomic, strong) UIButton *removeMarkersBtn, *locationBtn1, *locationBtn2, *searchBtn, *routeBtn, *dViewButton1, *dViewButton2, *settingsBtn, *synchronisationBtn;
 @property (nonatomic, retain) MKPolyline* routeLine;
 @property (nonatomic, retain) MKPolylineView* routeLineView;
@@ -40,6 +39,7 @@
 - (MKCoordinateSpan)coordinateSpanWithMapView:(MKMapView *)mapView
                              centerCoordinate:(CLLocationCoordinate2D)centerCoordinate
                                  andZoomLevel:(NSUInteger)zoomLevel;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *toolbarText;
 
 - (void)setCenterCoordinate:(CLLocationCoordinate2D)centerCoordinate
                   zoomLevel: (NSUInteger)zoomLevel

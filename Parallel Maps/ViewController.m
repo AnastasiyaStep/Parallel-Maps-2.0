@@ -36,7 +36,7 @@
     GMSPanoramaView *streetView_;
 }
 
-@synthesize googleMapsView, mapKitView, geocoder, addressLabel, searchBtn, removeMarkersBtn, settingsBtn, sidebarButton, initialLocation;
+@synthesize googleMapsView, mapKitView, geocoder, searchBtn, removeMarkersBtn, settingsBtn, sidebarButton, initialLocation;
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBar.hidden = NO;
@@ -65,13 +65,13 @@
     googleMapsView.settings.compassButton = YES;
     googleMapsView.delegate = self;
     
-    /*CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
-    CGFloat screenHeight = screenRect.size.height;
+    //CGFloat screenHeight = screenRect.size.height;
     
-    UIView *placeholder = [[UIView alloc] initWithFrame:CGRectMake(0, screenHeight-400, screenWidth, 40)];
-    [self.view addSubview:placeholder];
-     */
+    self.toolbarText.width = screenWidth;
+    
+    self.navigationController.toolbar.hidden = NO;
 }
 
 /*- (void)mapView:(MKMapView *)mapKitView didUpdateUserLocation:(MKUserLocation *)userLocation {
@@ -177,6 +177,11 @@
         self.googleMapsView.mapType = kGMSTypeTerrain;
     }
     
+    if (globalRegion.latitude) {
+        //MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(globalRegion.latitude, globalRegion.longitude, 15);
+        
+    }
+    
     [super viewDidLoad];
     
     UIPanGestureRecognizer* panRec = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didDragMap:)];
@@ -193,7 +198,7 @@
 }
 
 - (void)didDragMap:(UIGestureRecognizer*)gestureRecognizer {
-    NSLog(@"dsds");
+    
 }
 
 - (IBAction)locationButton:(id)sender {
@@ -261,11 +266,9 @@
     
     globalCoordinate = CLLocationCoordinate2DMake(self.mapKitView.region.center.latitude, self.mapKitView.region.center.longitude);
     syncFromMapKit = NO;
+    
+    MKCoordinateRegion globalRegion = self.mapKitView.region;
 }
-
-/*- (void)mapView:(GMSMapView *)googleMapsView willMove:(BOOL)gesture {
-    //googleMapCamera = self.googleMapsView.camera;
-}*/
 
 - (void)mapView:(GMSMapView *)googleMapsView didChangeCameraPosition:(GMSCameraPosition *)position {
     syncFromGoogleMap = YES;
@@ -273,14 +276,12 @@
         if (syncMode == YES) {
             CLLocationCoordinate2D centerCoord = {position.target.latitude, position.target.longitude};
             [mapKitView setCenterCoordinate:centerCoord zoomLevel:self.googleMapsView.camera.zoom animated:NO];
-            NSLog(@"change camera position");
-        } //else {
-            
-        //}
+        } else {
+            [mapKitView setZoom:self.googleMapsView.camera.zoom mapView:mapKitView animated:NO];
+        }
     }
     syncFromGoogleMap = NO;
 }
-
 
 #pragma mark - annotation
 
@@ -311,8 +312,6 @@
         return;
     }
     
-    self.addressLabel.hidden = NO;
-    
     CGPoint touchPoint = [gestureRecognizer locationInView:self.mapKitView];
     
     CLLocationCoordinate2D touchMapCoordinate = [self.mapKitView convertPoint:touchPoint toCoordinateFromView:self.mapKitView];
@@ -334,11 +333,10 @@
             CLPlacemark *placemark = [placemarks objectAtIndex:0];
             
             annTitle = [NSString stringWithFormat:@"%@, %@", placemark.country, placemark.locality];
-            //self.addressLabel.text = placemark.description;
             
             if ([placemark.areasOfInterest count] > 0) {
                 NSString *areaOfInterest = [placemark.areasOfInterest objectAtIndex:0];
-                self.addressLabel.text = areaOfInterest;
+                self.toolbarText.title = areaOfInterest;
             } else {
                 //NSLog(@"No area of interest was found");
             }
@@ -363,7 +361,7 @@
         }
     }];
     
-    self.addressLabel.text = [NSString stringWithFormat:@"Latitude: %.4f, Longitude: %.4f", touchMapCoordinate.latitude, touchMapCoordinate.longitude];
+    self.toolbarText.title = [NSString stringWithFormat:@"Latitude: %.4f, Longitude: %.4f", touchMapCoordinate.latitude, touchMapCoordinate.longitude];
     
     CLLocation *initLoc = [[CLLocation alloc] initWithLatitude:mapKitView.userLocation.coordinate.latitude longitude:mapKitView.userLocation.coordinate.longitude];
     CLLocation *finLoc = [[CLLocation alloc] initWithLatitude:touchMapCoordinate.latitude longitude:touchMapCoordinate.longitude];
@@ -374,11 +372,6 @@
     [mapKitView addOverlay:geoPol];
     
     CLLocationDistance distance = [finLoc distanceFromLocation: initLoc];
-    
-    NSString *time = [NSString stringWithFormat:@"%.0lf", routeDetails.expectedTravelTime/60];
-    double width = GMSGeometryDistance(coordLoc[0], coordLoc[1]);
-    
-    self.addressLabel.text = [NSString stringWithFormat:@"%f miles / %f meters %@ hours", distance/1000, width/1000, time];
     
     typedef struct GMSMapPoint GMSMapPoint;
     
@@ -472,12 +465,14 @@
             
             NSArray *steps = [rout steps];
             
-            NSLog(@"Total Steps : %d",[steps count]);
+            NSLog(@"Total Steps : %lu",(unsigned long)[steps count]);
             
             [steps enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 //NSLog(@"Rout Instruction : %@",[obj instructions]);
                 //NSLog(@"Rout Distance : %f",[obj distance]);
             }];
+            NSString *time = [NSString stringWithFormat:@"%.2lf", rout.expectedTravelTime/60];
+            self.toolbarText.title = [NSString stringWithFormat:@"%.2f miles -> %@ minutes", distance/1000, time];
         }];
         if (!error) {
             for (MKRoute *route in [response routes]) {
@@ -486,13 +481,7 @@
         }
     }];
     
-    [UIView animateWithDuration:5.0
-                     animations:^{
-                         [self.navigationController setToolbarHidden:YES];
-                     }
-                     completion:^(BOOL finished) {
-                         
-                     }];
+    //double width = GMSGeometryDistance(coordLoc[0], coordLoc[1]);
 }
 
 /*- (void)findDirectionsFrom:(MKMapItem *)source
@@ -528,13 +517,16 @@
 
 - (void)mapView:(MKMapView *)mapKitView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     //[self performSegueWithIdentifier:@"DetailsIphone" sender:view];
-    UINavigationController *detailsNavController = [self.storyboard instantiateViewControllerWithIdentifier:@"detailsNavController"];
+    //UINavigationController *detailsNavController = [self.storyboard instantiateViewControllerWithIdentifier:@"detailsNavController"];
     DetailsViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailsPopover"];
     //DetailsViewController *controller = [[DetailsViewController alloc] initWithNibName:@"DetailsPopover" bundle:nil];
-    [detailsNavController pushViewController:controller animated:YES];
-    [detailsNavController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    //[detailsNavController pushViewController:controller animated:YES];
+    //[detailsNavController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
     NSLog(@"details");
-    [self presentViewController:detailsNavController animated:YES completion:NULL];
+    //[self presentViewController:detailsNavController animated:YES completion:NULL];
+    [self setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    //[self presentModalViewController:controller animated:YES];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapKitView rendererForOverlay:(id<MKOverlay>)overlay {
@@ -593,6 +585,5 @@
 - (void)orientationChanged:(NSNotification *)notification {
     NSLog(@"fork");
 }
-
 
 @end

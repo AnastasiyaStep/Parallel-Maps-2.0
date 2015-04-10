@@ -15,7 +15,7 @@
 extern BOOL trafficMode, showLatLot, syncMode, DMode, shakeMode, indoorMode, syncFromMapKit, syncFromGoogleMap;
 extern BOOL mapTypeSatellite, mapTypeHybrid, mapTypeTerrain, mapTypeRegular;
 extern CLLocationDegrees addressLat, addressLong;
-extern CLLocationCoordinate2D globalCoordinate, pinCoordinate;
+extern CLLocationCoordinate2D globalCoordinate, pinCoordinate, globalRegion;
 extern NSString *address;
 
 @end
