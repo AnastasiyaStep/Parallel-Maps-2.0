@@ -15,7 +15,7 @@
 
 @implementation SettingsViewController
 
-@synthesize trafficModeSwitch, indoorSwitch, shakeSwitch, showLatLotSwitch, synchronizationSwitch, dViewSwitch, sidebarButton;
+@synthesize indoorSwitch, shakeSwitch, showLatLotSwitch, sidebarButton, tableView;
 
 - (void)viewDidAppear:(BOOL)animated {
     self.view.frame = self.view.superview.bounds;
@@ -24,6 +24,7 @@
             [(UILabel *)table setFont:[UIFont fontWithName:@"Helvetica" size:14]];
         }
     }
+    tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     //for (NSString *strFamilyName in [UIFont familyNames]) {
         //for (NSString *strFontName in [UIFont fontNamesForFamilyName:strFamilyName]) {
             //NSLog(@"%@", strFontName);
@@ -50,18 +51,6 @@
     //ViewController *mainController = [self.storyboard instantiateViewControllerWithIdentifier:@"main"];
     if (!showLatLotSwitch.on) showLatLot = NO;
     NSLog(@"show lat off");
-}
-
-- (IBAction)swicthSync:(id)sender {
-    //ViewController *mainController = [self.storyboard instantiateViewControllerWithIdentifier:@"main"];
-    if (!synchronizationSwitch.on) {
-        syncMode = NO;
-        NSLog(@"sync off");
-    }
-    else {
-        syncMode = YES;
-        NSLog(@"sync on");
-    }
 }
 
 @end

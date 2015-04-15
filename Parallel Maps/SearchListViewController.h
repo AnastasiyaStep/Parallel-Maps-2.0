@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *viewAllButton;
+@property (nonatomic, assign) MKCoordinateRegion boundingRegion;
 
 @end

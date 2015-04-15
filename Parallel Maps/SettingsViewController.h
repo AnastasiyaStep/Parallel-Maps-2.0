@@ -12,12 +12,10 @@
 #import "MainModel.h"
 
 @interface SettingsViewController : UITableViewController
-@property (strong, nonatomic) IBOutlet UISwitch *trafficModeSwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *indoorSwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *shakeSwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *showLatLotSwitch;
-@property (strong, nonatomic) IBOutlet UISwitch *synchronizationSwitch;
-@property (strong, nonatomic) IBOutlet UISwitch *dViewSwitch;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

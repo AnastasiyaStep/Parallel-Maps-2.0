@@ -50,8 +50,14 @@
     GMSPanoramaService *s = [[GMSPanoramaService alloc] init];
     [s requestPanoramaNearCoordinate:globalCoordinate callback:^(GMSPanorama *panorama, NSError *error) {
         if (error) {
-            NSLog(@"panorama = %@, error lat lot unacceptable = %f", panorama, coordinate.latitude);
-            self.navigationItem.title = [NSString stringWithFormat:@"panorama = %@, error lat lot unacceptable = %f", panorama, coordinate.latitude];
+            //NSLog(@"panorama = %@, error lat lot unacceptable = %f", panorama, coordinate.latitude);
+            
+            //self.navigationItem.title = [NSString stringWithFormat:@"panorama = %@, error lat lot unacceptable = %f", panorama, coordinate.latitude];
+            
+            NSString *alertMessage = [NSString stringWithFormat:@"Unable to find street view in this place. Please, try another"];
+            UIAlertView *servicesDisabledAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:alertMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [servicesDisabledAlert show];
+            
         } else {
             GMSMarker *marker = [[GMSMarker alloc] init];
             marker.panoramaView = panoView;

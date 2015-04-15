@@ -12,10 +12,11 @@
 
 @interface MainModel : NSObject
 
-extern BOOL trafficMode, showLatLot, syncMode, DMode, shakeMode, indoorMode, syncFromMapKit, syncFromGoogleMap;
+extern BOOL trafficMode, showLatLot, syncMode, DMode, shakeMode, indoorMode, syncFromMapKit, syncFromGoogleMap, searchSegue, regionSave;
 extern BOOL mapTypeSatellite, mapTypeHybrid, mapTypeTerrain, mapTypeRegular;
 extern CLLocationDegrees addressLat, addressLong;
-extern CLLocationCoordinate2D globalCoordinate, pinCoordinate, globalRegion;
+extern CLLocationCoordinate2D globalCoordinate, pinCoordinate;
+extern MKCoordinateRegion globalRegion;
 extern NSString *address;
 
 @end

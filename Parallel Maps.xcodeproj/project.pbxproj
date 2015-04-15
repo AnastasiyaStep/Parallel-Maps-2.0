@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4507254B1ADDFC77002C8B47 /* RoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4507254A1ADDFC77002C8B47 /* RoutesViewController.m */; };
 		4559A3D31AAD38D900FDB66E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4559A3D21AAD38D900FDB66E /* main.m */; };
 		4559A3D61AAD38D900FDB66E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4559A3D51AAD38D900FDB66E /* AppDelegate.m */; };
 		4559A3D91AAD38D900FDB66E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4559A3D81AAD38D900FDB66E /* ViewController.m */; };
@@ -55,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		450725491ADDFC77002C8B47 /* RoutesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoutesViewController.h; sourceTree = "<group>"; };
+		4507254A1ADDFC77002C8B47 /* RoutesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutesViewController.m; sourceTree = "<group>"; };
 		4559A3CD1AAD38D900FDB66E /* Parallel Maps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parallel Maps.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4559A3D11AAD38D900FDB66E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4559A3D21AAD38D900FDB66E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -251,6 +254,8 @@
 				45F7BC431AC0FA5B003FCE27 /* MapTypesViewController.m */,
 				45C5F8141ACBD9950078540B /* DirectionsViewController.h */,
 				45C5F8151ACBD9950078540B /* DirectionsViewController.m */,
+				450725491ADDFC77002C8B47 /* RoutesViewController.h */,
+				4507254A1ADDFC77002C8B47 /* RoutesViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -417,6 +422,7 @@
 				45FFC7D81AD60EF30029E809 /* GQTPointQuadTreeChild.m in Sources */,
 				45F7BC6B1AC8F904003FCE27 /* MainModel.m in Sources */,
 				4559A3D31AAD38D900FDB66E /* main.m in Sources */,
+				4507254B1ADDFC77002C8B47 /* RoutesViewController.m in Sources */,
 				45C5F8131ACB954E0078540B /* StreetViewController.m in Sources */,
 				45FFC7CE1AD3715D0029E809 /* MapKit+ZoomLevel.m in Sources */,
 				45F7BC6F1AC91C7F003FCE27 /* SWRevealViewController.m in Sources */,

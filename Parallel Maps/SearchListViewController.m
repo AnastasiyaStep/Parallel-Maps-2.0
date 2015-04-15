@@ -45,7 +45,7 @@ static NSString *kCellIdentifier = @"cellIdentifier";
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic) CLLocationCoordinate2D userLocation;
 
-@property (nonatomic, assign) MKCoordinateRegion boundingRegion;
+//@property (nonatomic, assign) MKCoordinateRegion boundingRegion;
 
 - (IBAction)showAll:(id)sender;
 
@@ -72,6 +72,10 @@ static NSString *kCellIdentifier = @"cellIdentifier";
     self.showAllSegue = [[DetailSegue alloc] initWithIdentifier:@"showAll" source:self destination:self.mapViewController];
     
     [self setGestureOnTableView];
+    
+    CGRect frame = self.tableView.frame;
+    frame.size.height = self.tableView.contentSize.height;
+    self.tableView.frame = frame;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -99,30 +103,47 @@ static NSString *kCellIdentifier = @"cellIdentifier";
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
     
-    MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
-    request.naturalLanguageQuery = searchBar.text;
+    NSString *causeStr = nil;
     
-    MKLocalSearch *search = [[MKLocalSearch alloc] initWithRequest:request];
-    
-    [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
-        [_mapItems removeAllObjects];
-        //[_mapView removeAnnotations:[_mapView annotations]];
+    if ([CLLocationManager locationServicesEnabled] == NO) {
+        causeStr = @"device";
+    }
+    else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+        causeStr = @"app";
+    }
+    else {
+        MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
+        request.naturalLanguageQuery = searchBar.text;
         
-        for(MKMapItem *item in response.mapItems) {
-            MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
-            point.coordinate = item.placemark.coordinate;
-            point.title = item.placemark.name;
-            point.subtitle = item.phoneNumber;
+        MKLocalSearch *search = [[MKLocalSearch alloc] initWithRequest:request];
+        
+        [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
+            [_mapItems removeAllObjects];
+            //[_mapView removeAnnotations:[_mapView annotations]];
             
-            //[_mapView addAnnotation:point];
-            [_mapItems addObject:item];
-        }
-        //[_mapView showAnnotations:[_mapView annotations] animated:YES];
-        _mapItemFrom = _mapItemTo = nil;
-        NSLog(@"search");
-        
-        [_tableView reloadData];
-    }];
+            for(MKMapItem *item in response.mapItems) {
+                MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+                point.coordinate = item.placemark.coordinate;
+                point.title = item.placemark.name;
+                point.subtitle = item.phoneNumber;
+                
+                self.boundingRegion = response.boundingRegion;
+                
+                //[_mapView addAnnotation:point];
+                [_mapItems addObject:item];
+            }
+            //[_mapView showAnnotations:[_mapView annotations] animated:YES];
+            _mapItemFrom = _mapItemTo = nil;
+            NSLog(@"search");
+            
+            [_tableView reloadData];
+        }];
+    }
+    if (causeStr != nil) {
+        NSString *alertMessage = [NSString stringWithFormat:@"You currently have disabled location services for this %@. Please turn on location services.", causeStr];
+        UIAlertView *servicesDisabledAlert = [[UIAlertView alloc] initWithTitle:@"Location Services disabled" message:alertMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [servicesDisabledAlert show];
+    }
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
@@ -163,12 +184,18 @@ static NSString *kCellIdentifier = @"cellIdentifier";
     self.mapViewController.boundingRegion = self.boundingRegion;
     
     NSIndexPath *selectedItem = [self.tableView indexPathForSelectedRow];
+
     //self.mapViewController.mapItemList = [NSArray arrayWithObjects:[self.mapItems objectAtIndex:selectedItem.row
                                                                     //]];
-    //MKMapItem *item = [self.mapItems objectAtIndex:indexPath.row];
-    [self.detailSegue perform];
+    MKMapItem *item = [self.mapItems objectAtIndex:indexPath.row];
     NSLog(@"table item selected");
-    //for (MKPointAnnotation *annotation in )
+    //for (MKPointAnnotation *annotation in self.mapViewController.mapKitView.annotations)
+    
+    pinCoordinate.latitude = item.placemark.coordinate.latitude;
+    pinCoordinate.longitude = item.placemark.coordinate.longitude;
+    
+    searchSegue = YES;
+    [self.detailSegue perform];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -197,7 +224,33 @@ static NSString *kCellIdentifier = @"cellIdentifier";
     request.destination = destination;
     request.requestsAlternateRoutes = YES;
     
-    //MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
+    MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
+    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+        if(!error) {
+            _response = response;
+            NSLog(@"route count %d", [response.routes count]);
+            
+            int routeNo = routeIndex % [response.routes count];
+            MKRoute *route = response.routes[routeNo];
+            _selectedRoute = route;
+            
+            for(MKRouteStep *step in route.steps) {
+                NSLog(@"%@", step.instructions);
+                NSLog(@"%@", step.notice);
+            }
+            
+            MKDistanceFormatter *distanceFormat = [[MKDistanceFormatter alloc] init];
+            NSString *distance = [distanceFormat stringFromDistance:route.distance];
+            NSString *time = [NSString stringWithFormat:@"%.0lf", route.expectedTravelTime/60];
+            NSLog(@"%@経由", route.name);
+            NSLog(@"%@ - 約%@分で到着", distance, time);
+            
+            //[_mapView removeOverlays:[_mapView overlays]];
+            //[_mapView addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
+            
+            //_routeInfoLabel.text = [NSString stringWithFormat:@"%@経由で%@：約%@分で到着", route.name, distance, time];
+        }
+    }];
 }
 
 - (IBAction)showAll:(id)sender {

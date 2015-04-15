@@ -13,6 +13,7 @@
 #import "SWRevealViewController.h"
 #import "MapKit+ZoomLevel.h"
 #import "SearchListViewController.h"
+#import "AddressBook/AddressBook.h"
 
 #define METERS_PER_MILE 1609.344
 #define MERCATOR_RADIUS 85445659.44705395
@@ -64,6 +65,7 @@
     googleMapsView.myLocationEnabled = YES;
     googleMapsView.settings.compassButton = YES;
     googleMapsView.delegate = self;
+    googleMapsView.settings.consumesGesturesInView = YES;
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
@@ -72,12 +74,46 @@
     self.toolbarText.width = screenWidth;
     
     self.navigationController.toolbar.hidden = NO;
+    
+    if (searchSegue == YES) {
+        MKCoordinateRegion searchRegion;
+        searchRegion.center = pinCoordinate;
+        searchRegion.span = MKCoordinateSpanMake(0.0051, 0.0051);
+        [mapKitView setRegion:searchRegion];
+        MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+        annotation.coordinate = pinCoordinate;
+        [self.mapKitView addAnnotation:annotation];
+        //[self.mapKitView selectAnnotation:[self.mapKitView.annotations objectAtIndex:0] animated:YES];
+        
+        GMSMarker *marker = [GMSMarker markerWithPosition:pinCoordinate];
+        marker.map = googleMapsView;
+    }
+
+    if (regionSave == YES) {
+        [mapKitView setRegion:globalRegion];
+    }
+    
+    if (DMode == YES) {
+        [self.mapKitView setRegion:globalRegion animated:YES];
+        self.mapKitView.showsBuildings = YES;
+        MKMapCamera *mapCamera = [[MKMapCamera alloc] init];
+        mapCamera.centerCoordinate = self.mapKitView.centerCoordinate;
+        mapCamera.pitch = 45;
+        mapCamera.altitude = 200;
+        mapCamera.heading = 45;
+        self.mapKitView.camera = mapCamera;
+        
+        [googleMapsView animateToViewingAngle:45];
+        googleMapsView.buildingsEnabled = YES;
+    } else {
+        googleMapsView.buildingsEnabled = NO;
+    }
 }
 
 /*- (void)mapView:(MKMapView *)mapKitView didUpdateUserLocation:(MKUserLocation *)userLocation {
     if (!initialLocation) {
         self.initialLocation = userLocation.location;
-        
+ 
         MKCoordinateRegion region;
         region.center = self.mapKitView.userLocation.coordinate; 
         region.span = MKCoordinateSpanMake(0.005, 0.005);
@@ -150,6 +186,11 @@
     lpgr.minimumPressDuration = 1.0;
     [self.mapKitView addGestureRecognizer:lpgr];
     
+    /*UILongPressGestureRecognizer *lpgr2 = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress2:)];
+    lpgr2.minimumPressDuration = 1.0;
+    [self.googleMapsView addGestureRecognizer:lpgr2];
+     */
+    
     if (revealViewController) {
         [self.sidebarButton setTarget:self.revealViewController];
         [self.sidebarButton setAction:@selector(revealToggle:)];
@@ -175,11 +216,6 @@
     if (mapTypeTerrain == YES) {
         self.mapKitView.mapType = MKMapTypeStandard;
         self.googleMapsView.mapType = kGMSTypeTerrain;
-    }
-    
-    if (globalRegion.latitude) {
-        //MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(globalRegion.latitude, globalRegion.longitude, 15);
-        
     }
     
     [super viewDidLoad];
@@ -228,11 +264,13 @@
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-        NSLog(@"Please authorize location services");
+        NSString *locationMessage = [NSString stringWithFormat:@"Please authorize location services"];
+        UIAlertView *locationAlert = [[UIAlertView alloc] initWithTitle:@"Location disabled" message:locationMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [locationAlert show];
         return;
     }
     NSLog(@"CLLocationManager error: %@", error.localizedFailureReason);
-    UIAlertView *errorAlert = [[UIAlertView alloc] init];
+    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedFailureReason delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [errorAlert show];
     NSLog(@"Error: %@", error.description);
     return;
@@ -267,7 +305,7 @@
     globalCoordinate = CLLocationCoordinate2DMake(self.mapKitView.region.center.latitude, self.mapKitView.region.center.longitude);
     syncFromMapKit = NO;
     
-    MKCoordinateRegion globalRegion = self.mapKitView.region;
+    globalRegion = self.mapKitView.region;
 }
 
 - (void)mapView:(GMSMapView *)googleMapsView didChangeCameraPosition:(GMSCameraPosition *)position {
@@ -277,7 +315,7 @@
             CLLocationCoordinate2D centerCoord = {position.target.latitude, position.target.longitude};
             [mapKitView setCenterCoordinate:centerCoord zoomLevel:self.googleMapsView.camera.zoom animated:NO];
         } else {
-            [mapKitView setZoom:self.googleMapsView.camera.zoom mapView:mapKitView animated:NO];
+            //[mapKitView setZoom:self.googleMapsView.camera.zoom mapView:mapKitView animated:NO];
         }
     }
     syncFromGoogleMap = NO;
@@ -368,20 +406,22 @@
     
     CLLocationCoordinate2D coordLoc[2] = {initLoc.coordinate, finLoc.coordinate};
     
-    MKGeodesicPolyline *geoPol = [MKGeodesicPolyline polylineWithCoordinates:coordLoc count:2];
+   /* MKGeodesicPolyline *geoPol = [MKGeodesicPolyline polylineWithCoordinates:coordLoc count:2];
     [mapKitView addOverlay:geoPol];
-    
+    */
     CLLocationDistance distance = [finLoc distanceFromLocation: initLoc];
     
     typedef struct GMSMapPoint GMSMapPoint;
     
-    /*[mapKitView setCenterCoordinate:mapKitView.userLocation.coordinate animated:YES];
     
-    NSString *baseUrl = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/directions/json?origin=%f,%f&destination=%@&sensor=true", initLoc.coordinate.latitude, initLoc.coordinate.longitude];
+    // Google maps directions API
+    
+    NSString *baseUrl = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/directions/json?origin=%f,%f&destination=%f,%f&sensor=true", initLoc.coordinate.latitude, initLoc.coordinate.longitude, finLoc.coordinate.latitude, finLoc.coordinate.longitude];
     
     NSURL *url = [NSURL URLWithString:[baseUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
     NSURLRequest *requestGoogle = [NSURLRequest requestWithURL:url];
+    
     [NSURLConnection sendAsynchronousRequest:requestGoogle queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         NSError *error = nil;
         NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
@@ -403,8 +443,6 @@
         point.title =  [leg objectForKey:@"end_address"];
         point.subtitle = @"I'm here!!!";
         
-        [self.mapKitView addAnnotation:point];
-        
         NSArray *steps = [leg objectForKey:@"steps"];
         
         int stepIndex = 0;
@@ -423,20 +461,32 @@
             }
         }
         
-        MKPolyline *polyLine = [MKPolyline polylineWithCoordinates:stepCoordinates count:1 + stepIndex];
-        [mapKitView addOverlay:polyLine];
+        //MKPolyline *polyLine = [MKPolyline polylineWithCoordinates:stepCoordinates count:1 + stepIndex];
+        
+        GMSMutablePath *path2 = [GMSMutablePath path];
+        
+        for (stepIndex = 0; stepIndex <= [steps count] + 1; stepIndex++) {
+            [path2 addCoordinate:stepCoordinates[stepIndex]];
+            NSLog(@"step coordinate added: %d", stepIndex);
+        }
+        GMSPolyline *rectangle = [GMSPolyline polylineWithPath:path2];
+        rectangle.strokeWidth = 2.f;
+        rectangle.map = googleMapsView;
+        NSLog(@"gms");
         
         CLLocationCoordinate2D centerCoordinate = CLLocationCoordinate2DMake((mapKitView.userLocation.location.coordinate.latitude + coordinate.latitude)/2, (mapKitView.userLocation.location.coordinate.longitude + coordinate.longitude)/2);
-    }];*/
+    }];
     
-    
-    GMSMutablePath *path = [GMSMutablePath path];
+    /*GMSMutablePath *path = [GMSMutablePath path];
     [path addCoordinate:coordLoc[0]];
     [path addCoordinate:coordLoc[1]];
     
     GMSPolyline *rectangle = [GMSPolyline polylineWithPath:path];
     rectangle.strokeWidth = 2.f;
-    rectangle.map = googleMapsView;
+    rectangle.map = googleMapsView;*/
+    
+    
+    //Apple maps directions
     
     MKPlacemark *source = [[MKPlacemark alloc] initWithCoordinate:mapKitView.userLocation.coordinate addressDictionary:[NSDictionary dictionaryWithObjectsAndKeys:@"",@"", nil]];
     MKMapItem *srcMapItem = [[MKMapItem alloc] initWithPlacemark:source];
@@ -480,32 +530,54 @@
             }
         }
     }];
-    
-    //double width = GMSGeometryDistance(coordLoc[0], coordLoc[1]);
 }
 
-/*- (void)findDirectionsFrom:(MKMapItem *)source
-                        to:(MKMapItem *)destination
-{
-    //provide loading animation here
+- (void)mapView:(GMSMapView *)googleMapsView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
+    CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude];
     
-    MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
-    request.source = source;
-    request.transportType = MKDirectionsTransportTypeAutomobile;
-    request.destination = destination;
-    MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
-    __block typeof(self) weakSelf = self;
-    [directions calculateDirectionsWithCompletionHandler:
-     ^(MKDirectionsResponse *response, NSError *error) {
-         if (error) {
-             NSLog(@"Error is %@",error);
-         } else {
-             //do something about the response, like draw it on map
-             MKRoute *route = [response.routes firstObject];
-             [self.mapKitView addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
-         }
-     }];
-}*/
+    if (!self.geocoder) {
+        self.geocoder = [[CLGeocoder alloc] init];
+    }
+    
+    [self.geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (error) {
+            NSLog(@"Geocode failed with error");
+            return;
+        }
+        
+        for (CLPlacemark *placemark in placemarks) {
+            CLPlacemark *placemark = [placemarks objectAtIndex:0];
+            NSDictionary *addressDictionary = placemark.addressDictionary;
+            NSLog(@"address dictionary %@", addressDictionary);
+            NSString *annTitle = @"Address unknown";
+            
+            NSString *address = [addressDictionary
+                                 objectForKey:(NSString *)kABPersonAddressStreetKey];
+            NSString *city = [addressDictionary
+                              objectForKey:(NSString *)kABPersonAddressCityKey];
+            NSString *state = [addressDictionary
+                               objectForKey:(NSString *)kABPersonAddressStateKey];
+            NSString *zip = [addressDictionary
+                             objectForKey:(NSString *)kABPersonAddressZIPKey];
+            
+            NSLog(@"%@ %@ %@ %@", address,city, state, zip);
+            
+            GMSMarker *marker = [GMSMarker markerWithPosition:coordinate];
+            marker.title = [NSString stringWithFormat:@"%@, %@", city, state];
+            marker.snippet = [NSString stringWithFormat:@"%@, %@", address, zip];
+            marker.map = self.googleMapsView;
+            
+            if (syncMode == YES) {
+                MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+                annotation.coordinate = coordinate;
+                annTitle = [NSString stringWithFormat:@"%@, %@", placemark.country, placemark.locality];
+                annotation.title = annTitle;
+                annotation.subtitle = [NSString stringWithFormat:@"%@, %@, %@", placemark.subLocality, placemark.thoroughfare, placemark.description];
+                [self.mapKitView addAnnotation:annotation];
+            }
+        }
+    }];
+}
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapKitView viewForAnnotation:(id<MKAnnotation>)annotation {
     MKAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"loc"];
@@ -522,7 +594,6 @@
     //DetailsViewController *controller = [[DetailsViewController alloc] initWithNibName:@"DetailsPopover" bundle:nil];
     //[detailsNavController pushViewController:controller animated:YES];
     //[detailsNavController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-    NSLog(@"details");
     //[self presentViewController:detailsNavController animated:YES completion:NULL];
     [self setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     //[self presentModalViewController:controller animated:YES];
@@ -554,7 +625,6 @@
     [googleMapsView clear];
 }
 
-
 - (void)dViewButtonDidTap2:(UIButton *)tappedButton {
     self.googleMapsView.buildingsEnabled = YES;
     [googleMapsView animateToViewingAngle:45];
@@ -570,8 +640,8 @@
     self.mapKitView.camera = mapCamera;
 }
 
-
 - (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:YES];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
 }

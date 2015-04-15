@@ -44,6 +44,8 @@
     UINavigationController *destViewController = (UINavigationController *)segue.destinationViewController;
     destViewController.title = [[menuItems objectAtIndex:indexPath.row] capitalizedString];
     
+    regionSave = YES;
+    
     if ([segue.identifier isEqualToString:@"syncSegue"]) {
         //UINavigationController *navController = segue.destinationViewController;
         if (syncMode == YES) {
@@ -77,6 +79,7 @@
         mapTypeHybrid = NO;
         mapTypeSatellite = NO;
         mapTypeTerrain = NO;
+        regionSave = YES;
     }
     
     if ([segue.identifier isEqualToString:@"hybridView"]) {
@@ -84,6 +87,7 @@
         mapTypeSatellite = NO;
         mapTypeRegular = NO;
         mapTypeTerrain = NO;
+        regionSave = YES;
     }
     
     if ([segue.identifier isEqualToString:@"satelliteView"]) {
@@ -91,6 +95,7 @@
         mapTypeRegular = NO;
         mapTypeHybrid = NO;
         mapTypeTerrain = NO;
+        regionSave = YES;
     }
     
     if ([segue.identifier isEqualToString:@"terrainView"]) {
@@ -98,6 +103,7 @@
         mapTypeRegular = NO;
         mapTypeSatellite = NO;
         mapTypeHybrid = NO;
+        regionSave = YES;
     }
 }
 
