@@ -8,6 +8,7 @@
 
 #import "SearchListViewController.h"
 #import "ViewController.h"
+#import "SWRevealViewController.h"
 
 #import <MapKit/MapKit.h>
 
@@ -20,6 +21,14 @@
     SearchListViewController *sourceViewController = self.sourceViewController;
     ViewController *destinationViewController = self.destinationViewController;
     [sourceViewController.navigationController pushViewController:destinationViewController animated:YES];
+    
+    /*SearchListViewController *sourceViewController = self.sourceViewController;
+    SWRevealViewController *destinationViewController = self.destinationViewController;
+    [sourceViewController.navigationController pushViewController:destinationViewController animated:YES];*/
+
+    /*SWRevealViewController *slide = [self.storyboard instantiateViewControllerWithIdentifier:@"appController"];
+    [self presentViewController:slide animated:YES completion:nil];
+     */
 }
 
 @end
@@ -65,7 +74,7 @@ static NSString *kCellIdentifier = @"cellIdentifier";
     self.locationManager.delegate = self;
     [self.locationManager startUpdatingLocation];*/
     
-    self.mapViewController = [[self storyboard] instantiateViewControllerWithIdentifier:@"main"];
+    self.mapViewController = [[self storyboard] instantiateViewControllerWithIdentifier:@"appController"];
     
     self.detailSegue = [[DetailSegue alloc] initWithIdentifier:@"showDetail" source:self destination:self.mapViewController];
     
@@ -118,25 +127,33 @@ static NSString *kCellIdentifier = @"cellIdentifier";
         MKLocalSearch *search = [[MKLocalSearch alloc] initWithRequest:request];
         
         [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
-            [_mapItems removeAllObjects];
-            //[_mapView removeAnnotations:[_mapView annotations]];
-            
-            for(MKMapItem *item in response.mapItems) {
-                MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
-                point.coordinate = item.placemark.coordinate;
-                point.title = item.placemark.name;
-                point.subtitle = item.phoneNumber;
+            if (error != nil) {
+                NSString *errorStr = [[error userInfo] valueForKey:NSLocalizedDescriptionKey];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not find places" message:errorStr delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
+            } else {
+                [_mapItems removeAllObjects];
+                //[_mapView removeAnnotations:[_mapView annotations]];
                 
-                self.boundingRegion = response.boundingRegion;
+                for(MKMapItem *item in response.mapItems) {
+                    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+                    point.coordinate = item.placemark.coordinate;
+                    point.title = item.placemark.name;
+                    point.subtitle = item.phoneNumber;
+                
+                    self.boundingRegion = response.boundingRegion;
                 
                 //[_mapView addAnnotation:point];
-                [_mapItems addObject:item];
+                    [_mapItems addObject:item];
+                }
+                //[_mapView showAnnotations:[_mapView annotations] animated:YES];
+                _mapItemFrom = _mapItemTo = nil;
+                NSLog(@"search");
+                
+                self.viewAllButton.enabled = self.mapItems != nil ? YES : NO;
+                
+                [_tableView reloadData];
             }
-            //[_mapView showAnnotations:[_mapView annotations] animated:YES];
-            _mapItemFrom = _mapItemTo = nil;
-            NSLog(@"search");
-            
-            [_tableView reloadData];
         }];
     }
     if (causeStr != nil) {
@@ -167,7 +184,6 @@ static NSString *kCellIdentifier = @"cellIdentifier";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"%lu", (unsigned long)[_mapItems count]);
     return [_mapItems count];
 }
 
@@ -181,12 +197,12 @@ static NSString *kCellIdentifier = @"cellIdentifier";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.mapViewController.boundingRegion = self.boundingRegion;
+    //self.mapViewController.boundingRegion = self.boundingRegion;
     
     NSIndexPath *selectedItem = [self.tableView indexPathForSelectedRow];
 
-    //self.mapViewController.mapItemList = [NSArray arrayWithObjects:[self.mapItems objectAtIndex:selectedItem.row
-                                                                    //]];
+    self.mapViewController.mapItemList = [NSArray arrayWithObjects:[self.mapItems objectAtIndex:selectedItem.row], nil];
+    
     MKMapItem *item = [self.mapItems objectAtIndex:indexPath.row];
     NSLog(@"table item selected");
     //for (MKPointAnnotation *annotation in self.mapViewController.mapKitView.annotations)
@@ -212,52 +228,18 @@ static NSString *kCellIdentifier = @"cellIdentifier";
     [self performSegueWithIdentifier:@"showNaviPage" sender:self];
 }
 
-#pragma mark - Map Job
-
-#pragma mark - Route Job
-
-- (void)findDirectionsFrom:(MKMapItem*)source
-                        to:(MKMapItem*)destination
-                routeIndex:(int)routeIndex {
-    MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
-    request.source = source;
-    request.destination = destination;
-    request.requestsAlternateRoutes = YES;
-    
-    MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
-    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
-        if(!error) {
-            _response = response;
-            NSLog(@"route count %d", [response.routes count]);
-            
-            int routeNo = routeIndex % [response.routes count];
-            MKRoute *route = response.routes[routeNo];
-            _selectedRoute = route;
-            
-            for(MKRouteStep *step in route.steps) {
-                NSLog(@"%@", step.instructions);
-                NSLog(@"%@", step.notice);
-            }
-            
-            MKDistanceFormatter *distanceFormat = [[MKDistanceFormatter alloc] init];
-            NSString *distance = [distanceFormat stringFromDistance:route.distance];
-            NSString *time = [NSString stringWithFormat:@"%.0lf", route.expectedTravelTime/60];
-            NSLog(@"%@経由", route.name);
-            NSLog(@"%@ - 約%@分で到着", distance, time);
-            
-            //[_mapView removeOverlays:[_mapView overlays]];
-            //[_mapView addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
-            
-            //_routeInfoLabel.text = [NSString stringWithFormat:@"%@経由で%@：約%@分で到着", route.name, distance, time];
-        }
-    }];
-}
-
 - (IBAction)showAll:(id)sender {
-    self.mapViewController.boundingRegion = self.boundingRegion;
+    //self.mapViewController.boundingRegion = self.boundingRegion;
     self.mapViewController.mapItemList = self.mapItems;
     
+    searchSegue = YES;
     [self.showAllSegue perform];
+}
+
+- (IBAction)close:(id)sender {
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    SWRevealViewController *slide = [self.storyboard instantiateViewControllerWithIdentifier:@"appController"];
+    [self presentViewController:slide animated:YES completion:nil];
 }
 
 @end

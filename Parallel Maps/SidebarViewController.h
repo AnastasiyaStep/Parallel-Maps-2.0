@@ -10,5 +10,8 @@
 #import <Foundation/Foundation.h>
 
 @interface SidebarViewController : UITableViewController
+@property (strong, nonatomic) IBOutlet UISwitch *trafficModeSwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *dViewSwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *syncSwitch;
 
 @end

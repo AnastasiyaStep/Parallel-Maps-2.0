@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="Parallel Maps/Base.lproj/LaunchScreen.xib" source-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="6.3.1" build-num="6D1002"/>
+    </header>
+    <body>
+      <trans-unit id="8ie-xW-0ye.text">
+        <source>  Copyright (c) 2015 example. All rights reserved.</source>
+        <note>Class = "UILabel"; text = "  Copyright (c) 2015 example. All rights reserved."; ObjectID = "8ie-xW-0ye";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="Parallel Maps/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="6.3.1" build-num="6D1002"/>
+    </header>
+    <body>
+      <trans-unit id="1bq-4s-bf0.text">
+        <source>Street View</source>
+        <note>Class = "UILabel"; text = "Street View"; ObjectID = "1bq-4s-bf0";</note>
+      </trans-unit>
+      <trans-unit id="1p1-PZ-B0A.text">
+        <source>Hybrid</source>
+        <note>Class = "UILabel"; text = "Hybrid"; ObjectID = "1p1-PZ-B0A";</note>
+      </trans-unit>
+      <trans-unit id="2Pw-fh-Eds.title">
+        <source>Route steps</source>
+        <note>Class = "UINavigationController"; title = "Route steps"; ObjectID = "2Pw-fh-Eds";</note>
+      </trans-unit>
+      <trans-unit id="2cp-ak-yPf.title">
+        <source>Settings Navigation Controller Scene</source>
+        <note>Class = "UINavigationController"; title = "Settings Navigation Controller Scene"; ObjectID = "2cp-ak-yPf";</note>
+      </trans-unit>
+      <trans-unit id="3yK-C9-kTV.headerTitle">
+        <source>Double Maps</source>
+        <note>Class = "UITableViewSection"; headerTitle = "Double Maps"; ObjectID = "3yK-C9-kTV";</note>
+      </trans-unit>
+      <trans-unit id="5ul-xU-e27.title">
+        <source>Map types</source>
+        <note>Class = "UITableViewController"; title = "Map types"; ObjectID = "5ul-xU-e27";</note>
+      </trans-unit>
+      <trans-unit id="05v-EH-cBe.normalTitle">
+        <source>Done</source>
+        <note>Class = "UIButton"; normalTitle = "Done"; ObjectID = "05v-EH-cBe";</note>
+      </trans-unit>
+      <trans-unit id="6U8-qO-Uk1.text">
+        <source>Terrain</source>
+        <note>Class = "UILabel"; text = "Terrain"; ObjectID = "6U8-qO-Uk1";</note>
+      </trans-unit>
+      <trans-unit id="7yy-mz-ugL.title">
+        <source>Map Search</source>
+        <note>Class = "UINavigationItem"; title = "Map Search"; ObjectID = "7yy-mz-ugL";</note>
+      </trans-unit>
+      <trans-unit id="9cW-nb-5EJ.title">
+        <source>Back</source>
+        <note>Class = "UIBarButtonItem"; title = "Back"; ObjectID = "9cW-nb-5EJ";</note>
+      </trans-unit>
+      <trans-unit id="9vo-g9-bey.title">
+        <source>Search address</source>
+        <note>Class = "UITableViewController"; title = "Search address"; ObjectID = "9vo-g9-bey";</note>
+      </trans-unit>
+      <trans-unit id="26V-s8-iV5.title">
+        <source>View all</source>
+        <note>Class = "UIBarButtonItem"; title = "View all"; ObjectID = "26V-s8-iV5";</note>
+      </trans-unit>
+      <trans-unit id="A6k-Sr-dWT.title">
+        <source>Reveal View Controller</source>
+        <note>Class = "UIViewController"; title = "Reveal View Controller"; ObjectID = "A6k-Sr-dWT";</note>
+      </trans-unit>
+      <trans-unit id="AB2-34-eUm.title">
+        <source>Route Steps</source>
+        <note>Class = "UINavigationItem"; title = "Route Steps"; ObjectID = "AB2-34-eUm";</note>
+      </trans-unit>
+      <trans-unit id="AYq-YX-Ous.text">
+        <source>Distance in miles</source>
+        <note>Class = "UILabel"; text = "Distance in miles"; ObjectID = "AYq-YX-Ous";</note>
+      </trans-unit>
+      <trans-unit id="BKq-eP-b0f.text">
+        <source>only on Google Maps</source>
+        <note>Class = "UILabel"; text = "only on Google Maps"; ObjectID = "BKq-eP-b0f";</note>
+      </trans-unit>
+      <trans-unit id="FoF-Cw-8st.text">
+        <source>Terrain</source>
+        <note>Class = "UILabel"; text = "Terrain"; ObjectID = "FoF-Cw-8st";</note>
+      </trans-unit>
+      <trans-unit id="GtE-gJ-0zh.title">
+        <source>Title</source>
+        <note>Class = "UINavigationItem"; title = "Title"; ObjectID = "GtE-gJ-0zh";</note>
+      </trans-unit>
+      <trans-unit id="Gua-oS-rLG.text">
+        <source>From</source>
+        <note>Class = "UILabel"; text = "From"; ObjectID = "Gua-oS-rLG";</note>
+      </trans-unit>
+      <trans-unit id="GzT-Pa-0py.title">
+        <source>Location Details </source>
+        <note>Class = "UINavigationItem"; title = "Location Details "; ObjectID = "GzT-Pa-0py";</note>
+      </trans-unit>
+      <trans-unit id="HeQ-JQ-xKu.text">
+        <source>3D view</source>
+        <note>Class = "UILabel"; text = "3D view"; ObjectID = "HeQ-JQ-xKu";</note>
+      </trans-unit>
+      <trans-unit id="Ie8-dR-jD6.text">
+        <source>Address:</source>
+        <note>Class = "UILabel"; text = "Address:"; ObjectID = "Ie8-dR-jD6";</note>
+      </trans-unit>
+      <trans-unit id="Kox-9w-EVq.title">
+        <source>Close</source>
+        <note>Class = "UIBarButtonItem"; title = "Close"; ObjectID = "Kox-9w-EVq";</note>
+      </trans-unit>
+      <trans-unit id="LI6-ge-6vS.title">
+        <source>Street View</source>
+        <note>Class = "UINavigationItem"; title = "Street View"; ObjectID = "LI6-ge-6vS";</note>
+      </trans-unit>
+      <trans-unit id="M0E-5n-jxj.text">
+        <source>Settings</source>
+        <note>Class = "UILabel"; text = "Settings"; ObjectID = "M0E-5n-jxj";</note>
+      </trans-unit>
+      <trans-unit id="MOS-dg-vdC.title">
+        <source>Menu View Controller</source>
+        <note>Class = "UITableViewController"; title = "Menu View Controller"; ObjectID = "MOS-dg-vdC";</note>
+      </trans-unit>
+      <trans-unit id="NZt-E0-mx8.text">
+        <source>Traffic mode</source>
+        <note>Class = "UILabel"; text = "Traffic mode"; ObjectID = "NZt-E0-mx8";</note>
+      </trans-unit>
+      <trans-unit id="PNr-KH-PoS.text">
+        <source>Regular</source>
+        <note>Class = "UILabel"; text = "Regular"; ObjectID = "PNr-KH-PoS";</note>
+      </trans-unit>
+      <trans-unit id="PaC-Su-Ige.text">
+        <source>App guide</source>
+        <note>Class = "UILabel"; text = "App guide"; ObjectID = "PaC-Su-Ige";</note>
+      </trans-unit>
+      <trans-unit id="Ph6-tc-SmB.text">
+        <source>Synchronisation</source>
+        <note>Class = "UILabel"; text = "Synchronisation"; ObjectID = "Ph6-tc-SmB";</note>
+      </trans-unit>
+      <trans-unit id="QLE-wx-cBf.title">
+        <source>Item</source>
+        <note>Class = "UIBarButtonItem"; title = "Item"; ObjectID = "QLE-wx-cBf";</note>
+      </trans-unit>
+      <trans-unit id="QfV-iP-W4I.title">
+        <source>Directions</source>
+        <note>Class = "UINavigationItem"; title = "Directions"; ObjectID = "QfV-iP-W4I";</note>
+      </trans-unit>
+      <trans-unit id="RUE-YK-9jX.title">
+        <source>Settings</source>
+        <note>Class = "UINavigationItem"; title = "Settings"; ObjectID = "RUE-YK-9jX";</note>
+      </trans-unit>
+      <trans-unit id="TYU-EF-wMN.text">
+        <source>Label</source>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "TYU-EF-wMN";</note>
+      </trans-unit>
+      <trans-unit id="TYq-uT-ql7.title">
+        <source>Direction View Controller</source>
+        <note>Class = "UIViewController"; title = "Direction View Controller"; ObjectID = "TYq-uT-ql7";</note>
+      </trans-unit>
+      <trans-unit id="UhR-i3-Y9c.headerTitle">
+        <source>Route</source>
+        <note>Class = "UITableViewSection"; headerTitle = "Route"; ObjectID = "UhR-i3-Y9c";</note>
+      </trans-unit>
+      <trans-unit id="W1F-BT-gnh.title">
+        <source>Close</source>
+        <note>Class = "UIBarButtonItem"; title = "Close"; ObjectID = "W1F-BT-gnh";</note>
+      </trans-unit>
+      <trans-unit id="Xi5-NB-zeL.text">
+        <source>Directions</source>
+        <note>Class = "UILabel"; text = "Directions"; ObjectID = "Xi5-NB-zeL";</note>
+      </trans-unit>
+      <trans-unit id="YES-Nd-PiA.text">
+        <source>Detail</source>
+        <note>Class = "UILabel"; text = "Detail"; ObjectID = "YES-Nd-PiA";</note>
+      </trans-unit>
+      <trans-unit id="aLx-CU-GY3.text">
+        <source>Satellite</source>
+        <note>Class = "UILabel"; text = "Satellite"; ObjectID = "aLx-CU-GY3";</note>
+      </trans-unit>
+      <trans-unit id="aoO-Ij-bPP.text">
+        <source>Hybrid</source>
+        <note>Class = "UILabel"; text = "Hybrid"; ObjectID = "aoO-Ij-bPP";</note>
+      </trans-unit>
+      <trans-unit id="b53-0c-omA.headerTitle">
+        <source>Map types</source>
+        <note>Class = "UITableViewSection"; headerTitle = "Map types"; ObjectID = "b53-0c-omA";</note>
+      </trans-unit>
+      <trans-unit id="bXV-Sx-cuy.normalTitle">
+        <source>Start again</source>
+        <note>Class = "UIButton"; normalTitle = "Start again"; ObjectID = "bXV-Sx-cuy";</note>
+      </trans-unit>
+      <trans-unit id="dMn-k4-y1p.headerTitle">
+        <source>Application</source>
+        <note>Class = "UITableViewSection"; headerTitle = "Application"; ObjectID = "dMn-k4-y1p";</note>
+      </trans-unit>
+      <trans-unit id="eEi-87-RiE.normalTitle">
+        <source>Search</source>
+        <note>Class = "UIButton"; normalTitle = "Search"; ObjectID = "eEi-87-RiE";</note>
+      </trans-unit>
+      <trans-unit id="hL4-D6-nAn.text">
+        <source>Maps</source>
+        <note>Class = "UILabel"; text = "Maps"; ObjectID = "hL4-D6-nAn";</note>
+      </trans-unit>
+      <trans-unit id="jRk-G6-mmx.title">
+        <source>Route steps</source>
+        <note>Class = "UITableViewController"; title = "Route steps"; ObjectID = "jRk-G6-mmx";</note>
+      </trans-unit>
+      <trans-unit id="jRl-l2-rBG.segmentTitles[0]">
+        <source>Driving</source>
+        <note>Class = "UISegmentedControl"; jRl-l2-rBG.segmentTitles[0] = "Driving"; ObjectID = "jRl-l2-rBG";</note>
+      </trans-unit>
+      <trans-unit id="jRl-l2-rBG.segmentTitles[1]">
+        <source>Walking</source>
+        <note>Class = "UISegmentedControl"; jRl-l2-rBG.segmentTitles[1] = "Walking"; ObjectID = "jRl-l2-rBG";</note>
+      </trans-unit>
+      <trans-unit id="mBL-31-Ajh.headerTitle">
+        <source>Map Types</source>
+        <note>Class = "UITableViewSection"; headerTitle = "Map Types"; ObjectID = "mBL-31-Ajh";</note>
+      </trans-unit>
+      <trans-unit id="mLO-gA-03i.text">
+        <source>Regular</source>
+        <note>Class = "UILabel"; text = "Regular"; ObjectID = "mLO-gA-03i";</note>
+      </trans-unit>
+      <trans-unit id="mSZ-gW-WqC.title">
+        <source>Street View</source>
+        <note>Class = "UIViewController"; title = "Street View"; ObjectID = "mSZ-gW-WqC";</note>
+      </trans-unit>
+      <trans-unit id="mrd-xf-Y3l.title">
+        <source>Details View</source>
+        <note>Class = "UIViewController"; title = "Details View"; ObjectID = "mrd-xf-Y3l";</note>
+      </trans-unit>
+      <trans-unit id="oEZ-Ee-zMn.title">
+        <source>Details Navigation Controller</source>
+        <note>Class = "UINavigationController"; title = "Details Navigation Controller"; ObjectID = "oEZ-Ee-zMn";</note>
+      </trans-unit>
+      <trans-unit id="oQW-DB-viU.text">
+        <source>To</source>
+        <note>Class = "UILabel"; text = "To"; ObjectID = "oQW-DB-viU";</note>
+      </trans-unit>
+      <trans-unit id="pmK-nb-kJc.text">
+        <source>Walking / Driving</source>
+        <note>Class = "UILabel"; text = "Walking / Driving"; ObjectID = "pmK-nb-kJc";</note>
+      </trans-unit>
+      <trans-unit id="qtR-Do-mQX.title">
+        <source>Close</source>
+        <note>Class = "UIBarButtonItem"; title = "Close"; ObjectID = "qtR-Do-mQX";</note>
+      </trans-unit>
+      <trans-unit id="rLY-Lh-4uI.normalTitle">
+        <source>Forward</source>
+        <note>Class = "UIButton"; normalTitle = "Forward"; ObjectID = "rLY-Lh-4uI";</note>
+      </trans-unit>
+      <trans-unit id="sLC-Bk-CfU.text">
+        <source>Title</source>
+        <note>Class = "UILabel"; text = "Title"; ObjectID = "sLC-Bk-CfU";</note>
+      </trans-unit>
+      <trans-unit id="tkd-mG-6mC.text">
+        <source>Unknown</source>
+        <note>Class = "UILabel"; text = "Unknown"; ObjectID = "tkd-mG-6mC";</note>
+      </trans-unit>
+      <trans-unit id="uTz-F9-nZ8.headerTitle">
+        <source>Maps </source>
+        <note>Class = "UITableViewSection"; headerTitle = "Maps "; ObjectID = "uTz-F9-nZ8";</note>
+      </trans-unit>
+      <trans-unit id="wQh-aQ-I84.text">
+        <source>Satellite</source>
+        <note>Class = "UILabel"; text = "Satellite"; ObjectID = "wQh-aQ-I84";</note>
+      </trans-unit>
+      <trans-unit id="yR6-NL-YQw.placeholder">
+        <source>Search places</source>
+        <note>Class = "UISearchBar"; placeholder = "Search places"; ObjectID = "yR6-NL-YQw";</note>
+      </trans-unit>
+      <trans-unit id="ycf-Ds-xoJ.text">
+        <source>Find route on tap</source>
+        <note>Class = "UILabel"; text = "Find route on tap"; ObjectID = "ycf-Ds-xoJ";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="Parallel Maps/Info.plist" source-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="6.3.1" build-num="6D1002"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName">
+        <source>Parallel Maps</source>
+      </trans-unit>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="Parallel MapsTests/Info.plist" source-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="6.3.1" build-num="6D1002"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-@interface DirectionsViewController : UIViewController
+@interface DirectionsViewController : UIViewController <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@property (strong, nonatomic) IBOutlet UITextField *from;
+@property (strong, nonatomic) IBOutlet UITextField *to;
+@property (assign) BOOL success;
 
 @end

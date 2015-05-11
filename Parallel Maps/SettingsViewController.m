@@ -15,7 +15,7 @@
 
 @implementation SettingsViewController
 
-@synthesize indoorSwitch, shakeSwitch, showLatLotSwitch, sidebarButton, tableView;
+@synthesize sidebarButton, tableView, switchKmMiles, switchRouteOnTap, switchWalkDrive;
 
 - (void)viewDidAppear:(BOOL)animated {
     self.view.frame = self.view.superview.bounds;
@@ -25,11 +25,6 @@
         }
     }
     tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    //for (NSString *strFamilyName in [UIFont familyNames]) {
-        //for (NSString *strFontName in [UIFont fontNamesForFamilyName:strFamilyName]) {
-            //NSLog(@"%@", strFontName);
-        //}
-    //}
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -45,12 +40,52 @@
         [self.sidebarButton setAction:@selector(revealToggle:)]; 
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
+    
+    if (drivingMode == YES) {
+        [self.switchWalkDrive setOn:YES];
+    } else {
+        [self.switchWalkDrive setOn:NO];
+    }
+    
+    if (showKm == YES) {
+        [self.switchKmMiles setOn:NO];
+    } else {
+        [self.switchKmMiles setOn:YES];
+    }
+    
+    if (drawRoute == YES) {
+        [self.switchRouteOnTap setOn:YES];
+    } else {
+        [self.switchRouteOnTap setOn:NO];
+    }
 }
 
-- (IBAction)switchLatitude:(id)sender {
-    //ViewController *mainController = [self.storyboard instantiateViewControllerWithIdentifier:@"main"];
-    if (!showLatLotSwitch.on) showLatLot = NO;
-    NSLog(@"show lat off");
+- (IBAction)switchKmMiles:(id)sender {
+    if ([sender isOn]) {
+        showKm = NO;
+    } else {
+        showKm = YES;
+    }
+}
+
+- (IBAction)switchRouteOnTap:(id)sender {
+    if ([sender isOn]) {
+        drawRoute = YES;
+    } else {
+        drawRoute = NO;
+    }
+}
+
+- (IBAction)switchDrivingWalking:(id)sender {
+    if ([sender isOn]) {
+        drivingMode = YES;
+        walkingMode = NO;
+        NSLog(@"driving mode on");
+    } else {
+        drivingMode = NO;
+        walkingMode = YES;
+        NSLog(@"walking mode on");
+    }
 }
 
 @end

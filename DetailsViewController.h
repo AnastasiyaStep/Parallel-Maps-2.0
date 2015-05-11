@@ -11,11 +11,17 @@
 
 #import "ViewController.h"
 
+@class DetailsViewController;
+@protocol DetailsViewControllerDelegate <NSObject>
+- (void)didDetailsViewControllerClosed:(DetailsViewController*)controller;
+@end
+
 @interface DetailsViewController : UIViewController <GMSMapViewDelegate, MKMapViewDelegate>
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (strong, nonatomic) IBOutlet UILabel *addressLabel;
 @property (strong, nonatomic) IBOutlet UILabel *zipCode;
+@property (nonatomic, strong) id<DetailsViewControllerDelegate> delegate;
 
 @end
 

@@ -14,6 +14,7 @@
 //#import <SMCalloutView/SMCalloutView.h>
 #import "DetailsViewController.h"
 #import "SettingsViewController.h"
+#import "RouteStepsViewController.h"
 
 #import "GQTPointQuadTree.h"
 #import "GQTPointQuadTreeChild.h"
@@ -26,7 +27,7 @@
 @property (strong, nonatomic) IBOutlet MKMapView *mapKitView;
 @property (strong, nonatomic) IBOutlet GMSMapView *googleMapsView;
 @property (nonatomic, strong) CLGeocoder *geocoder;
-@property (nonatomic, strong) UIButton *removeMarkersBtn, *locationBtn1, *locationBtn2, *searchBtn, *routeBtn, *dViewButton1, *dViewButton2, *settingsBtn, *synchronisationBtn;
+@property (nonatomic, strong) UIButton *searchBtn, *routeBtn, *dViewButton1, *dViewButton2, *settingsBtn, *synchronisationBtn, *locateBtn;
 @property (nonatomic, retain) MKPolyline* routeLine;
 @property (nonatomic, retain) MKPolylineView* routeLineView;
 @property (nonatomic, assign) CLLocationCoordinate2D from, to;
@@ -35,6 +36,7 @@
 @property NSMutableArray *detailSteps;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (nonatomic, retain) CLLocation *initialLocation;
+@property (nonatomic, retain) NSString *googleTransportMode;
 
 - (MKCoordinateSpan)coordinateSpanWithMapView:(MKMapView *)mapView
                              centerCoordinate:(CLLocationCoordinate2D)centerCoordinate
@@ -52,5 +54,17 @@
 - (void)dViewButtonDidTap2:(UIButton *)tappedButton;
 
 - (void)locationButtonDidTap:(UIButton *)tappedButton;
+
+- (void)directionsFrom:(CLLocationCoordinate2D *)from
+                    to:(CLLocationCoordinate2D *)to
+              animated:(BOOL)animated;
+
+- (void)addDirections:(NSDictionary *)json;
+
+- (void)removeDirections;
+
+- (void)dealloc;
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *detailsButton;
 
 @end

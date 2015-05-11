@@ -1,0 +1,192 @@
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "05v-EH-cBe"; */
+"05v-EH-cBe.normalTitle" = "サリュ";
+
+/* Class = "UILabel"; text = "Street View"; ObjectID = "1bq-4s-bf0"; */
+"1bq-4s-bf0.text" = "ストリートビュー";
+
+/* Class = "UILabel"; text = "Hybrid"; ObjectID = "1p1-PZ-B0A"; */
+"1p1-PZ-B0A.text" = "地図＋写真";
+
+/* Class = "UIBarButtonItem"; title = "View all"; ObjectID = "26V-s8-iV5"; */
+"26V-s8-iV5.title" = "すべて表示";
+
+/* Class = "UINavigationController"; title = "Route steps"; ObjectID = "2Pw-fh-Eds"; */
+"2Pw-fh-Eds.title" = "経路ステップ";
+
+/* Class = "UINavigationController"; title = "Settings Navigation Controller Scene"; ObjectID = "2cp-ak-yPf"; */
+"2cp-ak-yPf.title" = "Settings Navigation Controller Scene";
+
+/* Class = "UITableViewSection"; headerTitle = "Double Maps"; ObjectID = "3yK-C9-kTV"; */
+"3yK-C9-kTV.headerTitle" = "ダブルマップ";
+
+/* Class = "UITableViewController"; title = "Map types"; ObjectID = "5ul-xU-e27"; */
+"5ul-xU-e27.title" = "地図タイプ";
+
+/* Class = "UILabel"; text = "Terrain"; ObjectID = "6U8-qO-Uk1"; */
+"6U8-qO-Uk1.text" = "地形";
+
+/* Class = "UINavigationItem"; title = "Map Search"; ObjectID = "7yy-mz-ugL"; */
+"7yy-mz-ugL.title" = "地図検索";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "9cW-nb-5EJ"; */
+"9cW-nb-5EJ.title" = "バック";
+
+/* Class = "UITableViewController"; title = "Search address"; ObjectID = "9vo-g9-bey"; */
+"9vo-g9-bey.title" = "検索/住所を入力";
+
+/* Class = "UIViewController"; title = "Reveal View Controller"; ObjectID = "A6k-Sr-dWT"; */
+"A6k-Sr-dWT.title" = "Reveal View Controller";
+
+/* Class = "UINavigationItem"; title = "Route Steps"; ObjectID = "AB2-34-eUm"; */
+"AB2-34-eUm.title" = "経路ステップ";
+
+/* Class = "UILabel"; text = "Distance in miles"; ObjectID = "AYq-YX-Ous"; */
+"AYq-YX-Ous.text" = "距離をマイル表示";
+
+/* Class = "UILabel"; text = "only on Google Maps"; ObjectID = "BKq-eP-b0f"; */
+"BKq-eP-b0f.text" = "Googleマップ";
+
+/* Class = "UILabel"; text = "Terrain"; ObjectID = "FoF-Cw-8st"; */
+"FoF-Cw-8st.text" = "地形";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "GtE-gJ-0zh"; */
+"GtE-gJ-0zh.title" = "タイトル";
+
+/* Class = "UILabel"; text = "From"; ObjectID = "Gua-oS-rLG"; */
+"Gua-oS-rLG.text" = "出発地を入力";
+
+/* Class = "UINavigationItem"; title = "Location Details "; ObjectID = "GzT-Pa-0py"; */
+"GzT-Pa-0py.title" = "Location Details ";
+
+/* Class = "UILabel"; text = "3D view"; ObjectID = "HeQ-JQ-xKu"; */
+"HeQ-JQ-xKu.text" = "3Dマップを表示";
+
+/* Class = "UILabel"; text = "Address:"; ObjectID = "Ie8-dR-jD6"; */
+"Ie8-dR-jD6.text" = "番地:";
+
+/* Class = "UIBarButtonItem"; title = "Close"; ObjectID = "Kox-9w-EVq"; */
+"Kox-9w-EVq.title" = "閉じる";
+
+/* Class = "UINavigationItem"; title = "Street View"; ObjectID = "LI6-ge-6vS"; */
+"LI6-ge-6vS.title" = "ストリートビュー";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "M0E-5n-jxj"; */
+"M0E-5n-jxj.text" = "設定";
+
+/* Class = "UITableViewController"; title = "Menu View Controller"; ObjectID = "MOS-dg-vdC"; */
+"MOS-dg-vdC.title" = "Menu View Controller";
+
+/* Class = "UILabel"; text = "Traffic mode"; ObjectID = "NZt-E0-mx8"; */
+"NZt-E0-mx8.text" = "交通状況";
+
+/* Class = "UILabel"; text = "Regular"; ObjectID = "PNr-KH-PoS"; */
+"PNr-KH-PoS.text" = "標準";
+
+/* Class = "UILabel"; text = "App guide"; ObjectID = "PaC-Su-Ige"; */
+"PaC-Su-Ige.text" = "アプリのガイド";
+
+/* Class = "UILabel"; text = "Synchronisation"; ObjectID = "Ph6-tc-SmB"; */
+"Ph6-tc-SmB.text" = "マップを同期する";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "QLE-wx-cBf"; */
+"QLE-wx-cBf.title" = "Item";
+
+/* Class = "UINavigationItem"; title = "Directions"; ObjectID = "QfV-iP-W4I"; */
+"QfV-iP-W4I.title" = "ルート";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "RUE-YK-9jX"; */
+"RUE-YK-9jX.title" = "設定";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "TYU-EF-wMN"; */
+"TYU-EF-wMN.text" = "Label";
+
+/* Class = "UIViewController"; title = "Direction View Controller"; ObjectID = "TYq-uT-ql7"; */
+"TYq-uT-ql7.title" = "Direction View Controller";
+
+/* Class = "UITableViewSection"; headerTitle = "Route"; ObjectID = "UhR-i3-Y9c"; */
+"UhR-i3-Y9c.headerTitle" = "ルート";
+
+/* Class = "UIBarButtonItem"; title = "Close"; ObjectID = "W1F-BT-gnh"; */
+"W1F-BT-gnh.title" = "閉じる";
+
+/* Class = "UILabel"; text = "Directions"; ObjectID = "Xi5-NB-zeL"; */
+"Xi5-NB-zeL.text" = "ルート";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "YES-Nd-PiA"; */
+"YES-Nd-PiA.text" = "Detail";
+
+/* Class = "UILabel"; text = "Satellite"; ObjectID = "aLx-CU-GY3"; */
+"aLx-CU-GY3.text" = "航空写真";
+
+/* Class = "UILabel"; text = "Hybrid"; ObjectID = "aoO-Ij-bPP"; */
+"aoO-Ij-bPP.text" = "地図＋写真";
+
+/* Class = "UITableViewSection"; headerTitle = "Map types"; ObjectID = "b53-0c-omA"; */
+"b53-0c-omA.headerTitle" = "地図タイプ";
+
+/* Class = "UIButton"; normalTitle = "Start again"; ObjectID = "bXV-Sx-cuy"; */
+"bXV-Sx-cuy.normalTitle" = "最初に戻る";
+
+/* Class = "UITableViewSection"; headerTitle = "Application"; ObjectID = "dMn-k4-y1p"; */
+"dMn-k4-y1p.headerTitle" = "アプリ";
+
+/* Class = "UIButton"; normalTitle = "Search"; ObjectID = "eEi-87-RiE"; */
+"eEi-87-RiE.normalTitle" = "検索";
+
+/* Class = "UILabel"; text = "Maps"; ObjectID = "hL4-D6-nAn"; */
+"hL4-D6-nAn.text" = "マップ";
+
+/* Class = "UITableViewController"; title = "Route steps"; ObjectID = "jRk-G6-mmx"; */
+"jRk-G6-mmx.title" = "経路ステップ";
+
+/* Class = "UISegmentedControl"; jRl-l2-rBG.segmentTitles[0] = "Driving"; ObjectID = "jRl-l2-rBG"; */
+"jRl-l2-rBG.segmentTitles[0]" = "運転";
+
+/* Class = "UISegmentedControl"; jRl-l2-rBG.segmentTitles[1] = "Walking"; ObjectID = "jRl-l2-rBG"; */
+"jRl-l2-rBG.segmentTitles[1]" = "徒歩";
+
+/* Class = "UITableViewSection"; headerTitle = "Map Types"; ObjectID = "mBL-31-Ajh"; */
+"mBL-31-Ajh.headerTitle" = "地図タイプ";
+
+/* Class = "UILabel"; text = "Regular"; ObjectID = "mLO-gA-03i"; */
+"mLO-gA-03i.text" = "標準";
+
+/* Class = "UIViewController"; title = "Street View"; ObjectID = "mSZ-gW-WqC"; */
+"mSZ-gW-WqC.title" = "ストリートビュー";
+
+/* Class = "UIViewController"; title = "Details View"; ObjectID = "mrd-xf-Y3l"; */
+"mrd-xf-Y3l.title" = "Details View";
+
+/* Class = "UINavigationController"; title = "Details Navigation Controller"; ObjectID = "oEZ-Ee-zMn"; */
+"oEZ-Ee-zMn.title" = "Details Navigation Controller";
+
+/* Class = "UILabel"; text = "To"; ObjectID = "oQW-DB-viU"; */
+"oQW-DB-viU.text" = "目的地を入力";
+
+/* Class = "UILabel"; text = "Walking / Driving"; ObjectID = "pmK-nb-kJc"; */
+"pmK-nb-kJc.text" = "徒歩/ドライブ";
+
+/* Class = "UIBarButtonItem"; title = "Close"; ObjectID = "qtR-Do-mQX"; */
+"qtR-Do-mQX.title" = "閉じる";
+
+/* Class = "UIButton"; normalTitle = "Forward"; ObjectID = "rLY-Lh-4uI"; */
+"rLY-Lh-4uI.normalTitle" = "閉じる";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "sLC-Bk-CfU"; */
+"sLC-Bk-CfU.text" = "タイトル";
+
+/* Class = "UILabel"; text = "Unknown"; ObjectID = "tkd-mG-6mC"; */
+"tkd-mG-6mC.text" = "Unknown";
+
+/* Class = "UITableViewSection"; headerTitle = "Maps "; ObjectID = "uTz-F9-nZ8"; */
+"uTz-F9-nZ8.headerTitle" = "マップ";
+
+/* Class = "UILabel"; text = "Satellite"; ObjectID = "wQh-aQ-I84"; */
+"wQh-aQ-I84.text" = "航空写真";
+
+/* Class = "UISearchBar"; placeholder = "Search places"; ObjectID = "yR6-NL-YQw"; */
+"yR6-NL-YQw.placeholder" = "地名検索";
+
+/* Class = "UILabel"; text = "Find route on tap"; ObjectID = "ycf-Ds-xoJ"; */
+"ycf-Ds-xoJ.text" = "タップでルート表示";

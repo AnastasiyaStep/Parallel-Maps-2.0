@@ -42,7 +42,7 @@
     }*/
 }
 
-- (IBAction)backButton:(id)sender {
+/*- (IBAction)backButton:(id)sender {
     //UINavigationController *mainNavController = [self.storyboard instantiateViewControllerWithIdentifier:@"mainNavController"];
     ViewController *mainController = [self.storyboard instantiateViewControllerWithIdentifier:@"main"];
     //[mainNavController pushViewController:mainController animated:YES];
@@ -50,6 +50,10 @@
     
     //[self presentViewController:mainController animated:YES completion:NULL];
     [self presentModalViewController:mainController animated:YES];
+}*/
+
+- (IBAction)close:(id)sender {
+    [self.delegate didDetailsViewControllerClosed:self];
 }
 
 @end

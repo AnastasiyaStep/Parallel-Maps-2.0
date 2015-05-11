@@ -19,6 +19,28 @@
     NSArray *menuItems;
 }
 
+@synthesize trafficModeSwitch, dViewSwitch, syncSwitch;
+
+- (void)viewWillAppear:(BOOL)animated {
+    if (trafficMode == YES) {
+        [self.trafficModeSwitch setOn:YES];
+    } else {
+        [self.trafficModeSwitch setOn:NO];
+    }
+    
+    if (DMode == YES) {
+        [self.dViewSwitch setOn:YES];
+    } else {
+        [self.dViewSwitch setOn:NO];
+    }
+    
+    if (syncMode == YES) {
+        [self.syncSwitch setOn:YES];
+    } else {
+        [self.syncSwitch setOn:NO];
+    }
+}
+
 - (void) viewDidLoad {
     [super viewDidLoad];
     menuItems = @[@"home", @"traffic", @"syncronisation", @"3DView", @"directions", @"settings", @"streetView", @"regular"];
@@ -46,7 +68,7 @@
     
     regionSave = YES;
     
-    if ([segue.identifier isEqualToString:@"syncSegue"]) {
+    /*if ([segue.identifier isEqualToString:@"syncSegue"]) {
         //UINavigationController *navController = segue.destinationViewController;
         if (syncMode == YES) {
             NSString *msg1 = @"Turn off the synchronisation of maps?";
@@ -73,6 +95,7 @@
         alertDView.tag = 4;
         [alertDView show];
     }
+     */
     
     if ([segue.identifier isEqualToString:@"regularView"]) {
         mapTypeRegular = YES;
@@ -131,12 +154,41 @@
             syncMode = YES;
         }
     }
-    if (alert.tag == 4) {
+    /*if (alert.tag == 4) {
         if (buttonIndex == 0) {
             DMode = NO;
         } else if (buttonIndex == 1) {
             DMode = YES;
         }
+    }*/
+}
+
+- (IBAction)trafficModeSwitch:(id)sender {
+    if ([sender isOn]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"TrafficOnNotification" object:nil];
+    }
+    else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"TrafficOffNotification" object:nil];
+    }
+}
+
+- (IBAction)dViewModeSwitch:(id)sender {
+    if ([sender isOn]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"3dViewOn" object:nil];
+    }
+    else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"3dViewOff" object:nil];
+    }
+}
+
+- (IBAction)synchronisationModeSwitch:(id)sender {
+    if ([sender isOn]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"syncOn" object:nil];
+        syncMode = YES;
+    }
+    else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"syncOff" object:nil];
+        syncMode = NO;
     }
 }
 

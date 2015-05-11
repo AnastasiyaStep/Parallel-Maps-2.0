@@ -29,17 +29,8 @@
     panoView.delegate = self;
     self.view = panoView;
     
-    /*if (pinCoordinate) {
-        NSString *streetLocation = [NSString stringWithFormat:@"%f, %f", globalCoordinate.latitude, globalCoordinate.longitude];
-        self.navigationItem.title = streetLocation;
-        [self requestPanoramaNearCoordinate:globalCoordinate radius:100 callback:^(GMSPanorama *panorama, NSError *error) {
-            NSLog(@"panorama = %@ erroer", panorama);
-        }];
-        [panoView moveNearCoordinate:CLLocationCoordinate2DMake(globalCoordinate.latitude, globalCoordinate.longitude) radius:1000];
-     }*/
-    
     NSString *streetLocation = [NSString stringWithFormat:@"%f, %f", pinCoordinate.latitude, pinCoordinate.longitude];
-    self.navigationItem.title = streetLocation;
+    //self.navigationItem.title = streetLocation;
     [self requestPanoramaNearCoordinate:pinCoordinate radius:100 callback:^(GMSPanorama *panorama, NSError *error) {
         NSLog(@"panorama = %@ erroer", panorama);
     }];
@@ -50,14 +41,11 @@
     GMSPanoramaService *s = [[GMSPanoramaService alloc] init];
     [s requestPanoramaNearCoordinate:globalCoordinate callback:^(GMSPanorama *panorama, NSError *error) {
         if (error) {
-            //NSLog(@"panorama = %@, error lat lot unacceptable = %f", panorama, coordinate.latitude);
-            
-            //self.navigationItem.title = [NSString stringWithFormat:@"panorama = %@, error lat lot unacceptable = %f", panorama, coordinate.latitude];
-            
             NSString *alertMessage = [NSString stringWithFormat:@"Unable to find street view in this place. Please, try another"];
             UIAlertView *servicesDisabledAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:alertMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [servicesDisabledAlert show];
-            
+            SWRevealViewController *slide = [self.storyboard instantiateViewControllerWithIdentifier:@"appController"];
+            [self presentViewController:slide animated:YES completion:nil];
         } else {
             GMSMarker *marker = [[GMSMarker alloc] init];
             marker.panoramaView = panoView;

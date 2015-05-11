@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4507254B1ADDFC77002C8B47 /* RoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4507254A1ADDFC77002C8B47 /* RoutesViewController.m */; };
+		451117421AE9EFE400107B0E /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 451117411AE9EFE300107B0E /* PageContentViewController.m */; };
+		4518DA6C1AFC8A380023C99D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4518DA6B1AFC8A380023C99D /* Default.png */; };
 		4559A3D31AAD38D900FDB66E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4559A3D21AAD38D900FDB66E /* main.m */; };
 		4559A3D61AAD38D900FDB66E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4559A3D51AAD38D900FDB66E /* AppDelegate.m */; };
 		4559A3D91AAD38D900FDB66E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4559A3D81AAD38D900FDB66E /* ViewController.m */; };
 		4559A3DC1AAD38D900FDB66E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4559A3DA1AAD38D900FDB66E /* Main.storyboard */; };
-		4559A3DE1AAD38D900FDB66E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4559A3DD1AAD38D900FDB66E /* Images.xcassets */; };
 		4559A3E11AAD38D900FDB66E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4559A3DF1AAD38D900FDB66E /* LaunchScreen.xib */; };
 		4559A3ED1AAD38D900FDB66E /* Parallel_MapsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4559A3EC1AAD38D900FDB66E /* Parallel_MapsTests.m */; };
 		4559A3F71AAD3A9F00FDB66E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4559A3F61AAD3A9F00FDB66E /* MapKit.framework */; };
@@ -30,9 +30,22 @@
 		4559A4101AAD466700FDB66E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4559A40F1AAD466700FDB66E /* SystemConfiguration.framework */; };
 		4559A4161AAD472100FDB66E /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4559A4151AAD472100FDB66E /* GoogleMaps.framework */; };
 		4559A4181AAD472900FDB66E /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4559A4171AAD472900FDB66E /* GoogleMaps.bundle */; };
+		457921C01AEA265700258486 /* page1.png in Resources */ = {isa = PBXBuildFile; fileRef = 457921BC1AEA265700258486 /* page1.png */; };
+		457921C11AEA265700258486 /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 457921BD1AEA265700258486 /* page2.png */; };
+		457921C21AEA265700258486 /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 457921BE1AEA265700258486 /* page3.png */; };
+		457921C31AEA265700258486 /* page4.png in Resources */ = {isa = PBXBuildFile; fileRef = 457921BF1AEA265700258486 /* page4.png */; };
+		45872FE21AE109F3002E5683 /* RouteStepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45872FE11AE109F3002E5683 /* RouteStepsViewController.m */; };
+		45A1063C1AEA120A00B32A80 /* PageMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A1063B1AEA120A00B32A80 /* PageMainViewController.m */; };
 		45C5F8101ACA4D9B0078540B /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C5F80F1ACA4D9B0078540B /* SidebarViewController.m */; };
 		45C5F8131ACB954E0078540B /* StreetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C5F8121ACB954E0078540B /* StreetViewController.m */; };
 		45C5F8161ACBD9950078540B /* DirectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C5F8151ACBD9950078540B /* DirectionsViewController.m */; };
+		45D2F7951AFC92D400B3B89D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45D2F7941AFC92D400B3B89D /* Images.xcassets */; };
+		45E85FA11AF1FDAC00C5D5A6 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45E85F9D1AF1FDAC00C5D5A6 /* image.jpg */; };
+		45E85FA21AF1FDAC00C5D5A6 /* image(2).jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45E85F9E1AF1FDAC00C5D5A6 /* image(2).jpg */; };
+		45E85FA31AF1FDAC00C5D5A6 /* image(3).jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45E85F9F1AF1FDAC00C5D5A6 /* image(3).jpg */; };
+		45E85FA41AF1FDAC00C5D5A6 /* image(4).jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45E85FA01AF1FDAC00C5D5A6 /* image(4).jpg */; };
+		45F049311ADE5FB400EEFE8D /* DirectionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F049301ADE5FB400EEFE8D /* DirectionsManager.m */; };
+		45F049341ADF543800EEFE8D /* MDDirectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F049331ADF543800EEFE8D /* MDDirectionService.m */; };
 		45F7BC381ABBC812003FCE27 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F7BC371ABBC812003FCE27 /* DetailsViewController.m */; };
 		45F7BC411AC042D8003FCE27 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F7BC401AC042D8003FCE27 /* SettingsViewController.m */; };
 		45F7BC441AC0FA5B003FCE27 /* MapTypesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F7BC431AC0FA5B003FCE27 /* MapTypesViewController.m */; };
@@ -56,9 +69,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		450725491ADDFC77002C8B47 /* RoutesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoutesViewController.h; sourceTree = "<group>"; };
-		4507254A1ADDFC77002C8B47 /* RoutesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutesViewController.m; sourceTree = "<group>"; };
-		4559A3CD1AAD38D900FDB66E /* Parallel Maps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parallel Maps.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		451117401AE9EFE300107B0E /* PageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentViewController.h; sourceTree = "<group>"; };
+		451117411AE9EFE300107B0E /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
+		4518DA6B1AFC8A380023C99D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		4559A3CD1AAD38D900FDB66E /* parallel maps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "parallel maps.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4559A3D11AAD38D900FDB66E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4559A3D21AAD38D900FDB66E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4559A3D41AAD38D900FDB66E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -66,7 +80,6 @@
 		4559A3D71AAD38D900FDB66E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		4559A3D81AAD38D900FDB66E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4559A3DB1AAD38D900FDB66E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4559A3DD1AAD38D900FDB66E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4559A3E01AAD38D900FDB66E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		4559A3E61AAD38D900FDB66E /* Parallel MapsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Parallel MapsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4559A3EB1AAD38D900FDB66E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -86,12 +99,33 @@
 		4559A40F1AAD466700FDB66E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4559A4151AAD472100FDB66E /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		4559A4171AAD472900FDB66E /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
+		457921BC1AEA265700258486 /* page1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page1.png; sourceTree = "<group>"; };
+		457921BD1AEA265700258486 /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page2.png; sourceTree = "<group>"; };
+		457921BE1AEA265700258486 /* page3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page3.png; sourceTree = "<group>"; };
+		457921BF1AEA265700258486 /* page4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page4.png; sourceTree = "<group>"; };
+		45872FE01AE109F3002E5683 /* RouteStepsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteStepsViewController.h; sourceTree = "<group>"; };
+		45872FE11AE109F3002E5683 /* RouteStepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteStepsViewController.m; sourceTree = "<group>"; };
+		45A1063A1AEA120A00B32A80 /* PageMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageMainViewController.h; sourceTree = "<group>"; };
+		45A1063B1AEA120A00B32A80 /* PageMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageMainViewController.m; sourceTree = "<group>"; };
 		45C5F80E1ACA4D9B0078540B /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
 		45C5F80F1ACA4D9B0078540B /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
 		45C5F8111ACB954E0078540B /* StreetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreetViewController.h; sourceTree = "<group>"; };
 		45C5F8121ACB954E0078540B /* StreetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreetViewController.m; sourceTree = "<group>"; };
 		45C5F8141ACBD9950078540B /* DirectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionsViewController.h; sourceTree = "<group>"; };
 		45C5F8151ACBD9950078540B /* DirectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionsViewController.m; sourceTree = "<group>"; };
+		45D2F7941AFC92D400B3B89D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		45D2F7961AFCB65D00B3B89D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		45D2F7971AFCB65D00B3B89D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		45E85F9D1AF1FDAC00C5D5A6 /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
+		45E85F9E1AF1FDAC00C5D5A6 /* image(2).jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image(2).jpg"; sourceTree = "<group>"; };
+		45E85F9F1AF1FDAC00C5D5A6 /* image(3).jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image(3).jpg"; sourceTree = "<group>"; };
+		45E85FA01AF1FDAC00C5D5A6 /* image(4).jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image(4).jpg"; sourceTree = "<group>"; };
+		45E85FA51AF2167C00C5D5A6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		45E85FA61AF2167C00C5D5A6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		45F0492F1ADE5FB400EEFE8D /* DirectionsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionsManager.h; sourceTree = "<group>"; };
+		45F049301ADE5FB400EEFE8D /* DirectionsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionsManager.m; sourceTree = "<group>"; };
+		45F049321ADF543800EEFE8D /* MDDirectionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDirectionService.h; sourceTree = "<group>"; };
+		45F049331ADF543800EEFE8D /* MDDirectionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDirectionService.m; sourceTree = "<group>"; };
 		45F7BC371ABBC812003FCE27 /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		45F7BC3A1ABBC83C003FCE27 /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DetailsViewController.h; path = ../DetailsViewController.h; sourceTree = "<group>"; };
 		45F7BC3F1AC042D8003FCE27 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -152,6 +186,7 @@
 		4559A3C41AAD38D900FDB66E = {
 			isa = PBXGroup;
 			children = (
+				45D2F7941AFC92D400B3B89D /* Images.xcassets */,
 				45FFC7CF1AD60EC80029E809 /* Google maps utils */,
 				45F7BC6C1AC91C68003FCE27 /* SWLRevealViewController */,
 				4559A3F81AAD3AA600FDB66E /* Frameworks */,
@@ -164,7 +199,7 @@
 		4559A3CE1AAD38D900FDB66E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4559A3CD1AAD38D900FDB66E /* Parallel Maps.app */,
+				4559A3CD1AAD38D900FDB66E /* parallel maps.app */,
 				4559A3E61AAD38D900FDB66E /* Parallel MapsTests.xctest */,
 			);
 			name = Products;
@@ -180,7 +215,6 @@
 				45F7BC3B1ABBE6EE003FCE27 /* Controller */,
 				45F7BC4B1AC3DB96003FCE27 /* Resources */,
 				4559A3DA1AAD38D900FDB66E /* Main.storyboard */,
-				4559A3DD1AAD38D900FDB66E /* Images.xcassets */,
 				4559A3DF1AAD38D900FDB66E /* LaunchScreen.xib */,
 				4559A3D01AAD38D900FDB66E /* Supporting Files */,
 			);
@@ -254,8 +288,12 @@
 				45F7BC431AC0FA5B003FCE27 /* MapTypesViewController.m */,
 				45C5F8141ACBD9950078540B /* DirectionsViewController.h */,
 				45C5F8151ACBD9950078540B /* DirectionsViewController.m */,
-				450725491ADDFC77002C8B47 /* RoutesViewController.h */,
-				4507254A1ADDFC77002C8B47 /* RoutesViewController.m */,
+				45872FE01AE109F3002E5683 /* RouteStepsViewController.h */,
+				45872FE11AE109F3002E5683 /* RouteStepsViewController.m */,
+				451117401AE9EFE300107B0E /* PageContentViewController.h */,
+				451117411AE9EFE300107B0E /* PageContentViewController.m */,
+				45A1063A1AEA120A00B32A80 /* PageMainViewController.h */,
+				45A1063B1AEA120A00B32A80 /* PageMainViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -263,6 +301,15 @@
 		45F7BC4B1AC3DB96003FCE27 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				45E85F9D1AF1FDAC00C5D5A6 /* image.jpg */,
+				45E85F9E1AF1FDAC00C5D5A6 /* image(2).jpg */,
+				45E85F9F1AF1FDAC00C5D5A6 /* image(3).jpg */,
+				45E85FA01AF1FDAC00C5D5A6 /* image(4).jpg */,
+				4518DA6B1AFC8A380023C99D /* Default.png */,
+				457921BC1AEA265700258486 /* page1.png */,
+				457921BD1AEA265700258486 /* page2.png */,
+				457921BE1AEA265700258486 /* page3.png */,
+				457921BF1AEA265700258486 /* page4.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -276,6 +323,10 @@
 				45F7BC6A1AC8F904003FCE27 /* MainModel.m */,
 				45FFC7CC1AD3715D0029E809 /* MapKit+ZoomLevel.h */,
 				45FFC7CD1AD3715D0029E809 /* MapKit+ZoomLevel.m */,
+				45F0492F1ADE5FB400EEFE8D /* DirectionsManager.h */,
+				45F049301ADE5FB400EEFE8D /* DirectionsManager.m */,
+				45F049321ADF543800EEFE8D /* MDDirectionService.h */,
+				45F049331ADF543800EEFE8D /* MDDirectionService.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -314,9 +365,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4559A3CC1AAD38D900FDB66E /* Parallel Maps */ = {
+		4559A3CC1AAD38D900FDB66E /* parallel maps */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4559A3F01AAD38D900FDB66E /* Build configuration list for PBXNativeTarget "Parallel Maps" */;
+			buildConfigurationList = 4559A3F01AAD38D900FDB66E /* Build configuration list for PBXNativeTarget "parallel maps" */;
 			buildPhases = (
 				4559A3C91AAD38D900FDB66E /* Sources */,
 				4559A3CA1AAD38D900FDB66E /* Frameworks */,
@@ -326,9 +377,9 @@
 			);
 			dependencies = (
 			);
-			name = "Parallel Maps";
+			name = "parallel maps";
 			productName = "Parallel Maps";
-			productReference = 4559A3CD1AAD38D900FDB66E /* Parallel Maps.app */;
+			productReference = 4559A3CD1AAD38D900FDB66E /* parallel maps.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4559A3E51AAD38D900FDB66E /* Parallel MapsTests */ = {
@@ -360,9 +411,11 @@
 				TargetAttributes = {
 					4559A3CC1AAD38D900FDB66E = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = ULR5P2UEKG;
 					};
 					4559A3E51AAD38D900FDB66E = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = ULR5P2UEKG;
 						TestTargetID = 4559A3CC1AAD38D900FDB66E;
 					};
 				};
@@ -380,7 +433,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4559A3CC1AAD38D900FDB66E /* Parallel Maps */,
+				4559A3CC1AAD38D900FDB66E /* parallel maps */,
 				4559A3E51AAD38D900FDB66E /* Parallel MapsTests */,
 			);
 		};
@@ -392,9 +445,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				4559A3DC1AAD38D900FDB66E /* Main.storyboard in Resources */,
+				45E85FA31AF1FDAC00C5D5A6 /* image(3).jpg in Resources */,
+				457921C01AEA265700258486 /* page1.png in Resources */,
 				4559A3E11AAD38D900FDB66E /* LaunchScreen.xib in Resources */,
-				4559A3DE1AAD38D900FDB66E /* Images.xcassets in Resources */,
 				4559A4181AAD472900FDB66E /* GoogleMaps.bundle in Resources */,
+				457921C31AEA265700258486 /* page4.png in Resources */,
+				457921C11AEA265700258486 /* page2.png in Resources */,
+				45E85FA21AF1FDAC00C5D5A6 /* image(2).jpg in Resources */,
+				457921C21AEA265700258486 /* page3.png in Resources */,
+				45D2F7951AFC92D400B3B89D /* Images.xcassets in Resources */,
+				45E85FA11AF1FDAC00C5D5A6 /* image.jpg in Resources */,
+				45E85FA41AF1FDAC00C5D5A6 /* image(4).jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +463,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4518DA6C1AFC8A380023C99D /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,19 +476,23 @@
 			files = (
 				45FFC7D71AD60EF30029E809 /* GQTPointQuadTree.m in Sources */,
 				4559A3D91AAD38D900FDB66E /* ViewController.m in Sources */,
+				45F049341ADF543800EEFE8D /* MDDirectionService.m in Sources */,
 				45F7BC381ABBC812003FCE27 /* DetailsViewController.m in Sources */,
+				45F049311ADE5FB400EEFE8D /* DirectionsManager.m in Sources */,
 				45F7BC411AC042D8003FCE27 /* SettingsViewController.m in Sources */,
+				45872FE21AE109F3002E5683 /* RouteStepsViewController.m in Sources */,
 				4559A3D61AAD38D900FDB66E /* AppDelegate.m in Sources */,
 				45F7BC4A1AC2607D003FCE27 /* PlaceAnnotation.m in Sources */,
 				45C5F8161ACBD9950078540B /* DirectionsViewController.m in Sources */,
 				45FFC7D81AD60EF30029E809 /* GQTPointQuadTreeChild.m in Sources */,
 				45F7BC6B1AC8F904003FCE27 /* MainModel.m in Sources */,
 				4559A3D31AAD38D900FDB66E /* main.m in Sources */,
-				4507254B1ADDFC77002C8B47 /* RoutesViewController.m in Sources */,
 				45C5F8131ACB954E0078540B /* StreetViewController.m in Sources */,
+				45A1063C1AEA120A00B32A80 /* PageMainViewController.m in Sources */,
 				45FFC7CE1AD3715D0029E809 /* MapKit+ZoomLevel.m in Sources */,
 				45F7BC6F1AC91C7F003FCE27 /* SWRevealViewController.m in Sources */,
 				45F7BC471AC113F8003FCE27 /* SearchListViewController.m in Sources */,
+				451117421AE9EFE400107B0E /* PageContentViewController.m in Sources */,
 				45F7BC441AC0FA5B003FCE27 /* MapTypesViewController.m in Sources */,
 				45C5F8101ACA4D9B0078540B /* SidebarViewController.m in Sources */,
 			);
@@ -445,7 +511,7 @@
 /* Begin PBXTargetDependency section */
 		4559A3E81AAD38D900FDB66E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4559A3CC1AAD38D900FDB66E /* Parallel Maps */;
+			target = 4559A3CC1AAD38D900FDB66E /* parallel maps */;
 			targetProxy = 4559A3E71AAD38D900FDB66E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -455,6 +521,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				4559A3DB1AAD38D900FDB66E /* Base */,
+				45E85FA51AF2167C00C5D5A6 /* ja */,
+				45D2F7961AFCB65D00B3B89D /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -463,6 +531,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				4559A3E01AAD38D900FDB66E /* Base */,
+				45E85FA61AF2167C00C5D5A6 /* ja */,
+				45D2F7971AFCB65D00B3B89D /* ru */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -487,7 +557,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Anastasiya Stepanova (JTK2G2D5QC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Anastasiya Stepanova (JTK2G2D5QC)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -504,9 +575,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -529,7 +601,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: GOGA, Inc. (ULR5P2UEKG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: GOGA, Inc. (ULR5P2UEKG)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -540,8 +613,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "98ae3048-a9d7-4bf9-a8f3-a9f55f485e65";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -552,16 +626,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Anastasiya Stepanova (JTK2G2D5QC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Anastasiya Stepanova (JTK2G2D5QC)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/Anastasiya/Downloads/GoogleMaps-iOS-1.9-4.2",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Parallel Maps/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -570,16 +648,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: GOGA, Inc. (ULR5P2UEKG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: GOGA, Inc. (ULR5P2UEKG)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/Anastasiya/Downloads/GoogleMaps-iOS-1.9-4.2",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Parallel Maps/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "98ae3048-a9d7-4bf9-a8f3-a9f55f485e65";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -588,6 +670,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -599,6 +683,7 @@
 				INFOPLIST_FILE = "Parallel MapsTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Parallel Maps.app/Parallel Maps";
 			};
 			name = Debug;
@@ -607,6 +692,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -614,6 +701,7 @@
 				INFOPLIST_FILE = "Parallel MapsTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Parallel Maps.app/Parallel Maps";
 			};
 			name = Release;
@@ -630,7 +718,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4559A3F01AAD38D900FDB66E /* Build configuration list for PBXNativeTarget "Parallel Maps" */ = {
+		4559A3F01AAD38D900FDB66E /* Build configuration list for PBXNativeTarget "parallel maps" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4559A3F11AAD38D900FDB66E /* Debug */,
