@@ -19,16 +19,10 @@
 
 - (void)perform {
     SearchListViewController *sourceViewController = self.sourceViewController;
-    ViewController *destinationViewController = self.destinationViewController;
-    [sourceViewController.navigationController pushViewController:destinationViewController animated:YES];
-    
-    /*SearchListViewController *sourceViewController = self.sourceViewController;
     SWRevealViewController *destinationViewController = self.destinationViewController;
-    [sourceViewController.navigationController pushViewController:destinationViewController animated:YES];*/
-
-    /*SWRevealViewController *slide = [self.storyboard instantiateViewControllerWithIdentifier:@"appController"];
-    [self presentViewController:slide animated:YES completion:nil];
-     */
+    //[sourceViewController.navigationController pushViewController:destinationViewController animated:YES];
+    [sourceViewController presentViewController:destinationViewController animated:YES completion:nil];
+    
 }
 
 @end
@@ -148,7 +142,6 @@ static NSString *kCellIdentifier = @"cellIdentifier";
                 }
                 //[_mapView showAnnotations:[_mapView annotations] animated:YES];
                 _mapItemFrom = _mapItemTo = nil;
-                NSLog(@"search");
                 
                 self.viewAllButton.enabled = self.mapItems != nil ? YES : NO;
                 
@@ -201,10 +194,10 @@ static NSString *kCellIdentifier = @"cellIdentifier";
     
     NSIndexPath *selectedItem = [self.tableView indexPathForSelectedRow];
 
-    self.mapViewController.mapItemList = [NSArray arrayWithObjects:[self.mapItems objectAtIndex:selectedItem.row], nil];
+    //self.mapViewController.mapItemList = [NSArray arrayWithObjects:[self.mapItems objectAtIndex:selectedItem.row], nil];
+    mapItemList = [NSArray arrayWithObjects:[self.mapItems objectAtIndex:selectedItem.row], nil];
     
     MKMapItem *item = [self.mapItems objectAtIndex:indexPath.row];
-    NSLog(@"table item selected");
     //for (MKPointAnnotation *annotation in self.mapViewController.mapKitView.annotations)
     
     pinCoordinate.latitude = item.placemark.coordinate.latitude;
@@ -230,7 +223,7 @@ static NSString *kCellIdentifier = @"cellIdentifier";
 
 - (IBAction)showAll:(id)sender {
     //self.mapViewController.boundingRegion = self.boundingRegion;
-    self.mapViewController.mapItemList = self.mapItems;
+    mapItemList = self.mapItems;
     
     searchSegue = YES;
     [self.showAllSegue perform];

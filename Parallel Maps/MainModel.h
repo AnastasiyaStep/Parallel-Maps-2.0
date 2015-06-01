@@ -12,7 +12,7 @@
 
 @interface MainModel : NSObject
 
-extern BOOL trafficMode, showLatLot, syncMode, DMode, shakeMode, indoorMode, syncFromMapKit, syncFromGoogleMap, searchSegue, regionSave, directions, walkingMode, drivingMode, showKm, drawRoute;
+extern BOOL trafficMode, showLatLot, syncMode, DMode, shakeMode, indoorMode, syncFromMapKit, syncFromGoogleMap, searchSegue, regionSave, directions, walkingMode, drivingMode, showKm, drawRoute, directionSearch;
 extern BOOL mapTypeSatellite, mapTypeHybrid, mapTypeTerrain, mapTypeRegular;
 extern CLLocationDegrees addressLat, addressLong;
 extern CLLocationCoordinate2D globalCoordinate, pinCoordinate;
@@ -20,5 +20,7 @@ extern MKCoordinateRegion globalRegion;
 extern NSString *address;
 extern CLLocationCoordinate2D locationFrom, locationTo;
 extern GMSCoordinateBounds *bounds;
+extern CLLocationDirection mapAngle;
+extern NSArray *mapItemList;
 
 @end

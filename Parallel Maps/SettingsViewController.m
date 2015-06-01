@@ -80,11 +80,9 @@
     if ([sender isOn]) {
         drivingMode = YES;
         walkingMode = NO;
-        NSLog(@"driving mode on");
     } else {
         drivingMode = NO;
         walkingMode = YES;
-        NSLog(@"walking mode on");
     }
 }
 

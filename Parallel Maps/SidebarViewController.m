@@ -68,41 +68,12 @@
     
     regionSave = YES;
     
-    /*if ([segue.identifier isEqualToString:@"syncSegue"]) {
-        //UINavigationController *navController = segue.destinationViewController;
-        if (syncMode == YES) {
-            NSString *msg1 = @"Turn off the synchronisation of maps?";
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Synchronisation" message:msg1 delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
-            alert.tag = 1;
-            [alert show];
-        }
-        else {
-            NSString *msg2 = @"Turn on the synchronisation of maps?";
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Synchronisation" message:msg2 delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
-            alert.tag = 3;
-            [alert show];
-        }
-    }
-    
-    if ([segue.identifier isEqualToString:@"showTraffic"]) {
-        UIAlertView *alertTraffic = [[UIAlertView alloc] initWithTitle:@"Traffic mode" message:@"Enable?\n Only on Google Maps" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
-        alertTraffic.tag = 2;
-        [alertTraffic show];
-    }
-    
-    if ([segue.identifier isEqualToString:@"3dViewSegue"]) {
-        UIAlertView *alertDView = [[UIAlertView alloc] initWithTitle:@"3D view mode" message:@"Enable 3D view mode?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
-        alertDView.tag = 4;
-        [alertDView show];
-    }
-     */
-    
+
     if ([segue.identifier isEqualToString:@"regularView"]) {
         mapTypeRegular = YES;
         mapTypeHybrid = NO;
         mapTypeSatellite = NO;
         mapTypeTerrain = NO;
-        regionSave = YES;
     }
     
     if ([segue.identifier isEqualToString:@"hybridView"]) {
@@ -110,7 +81,6 @@
         mapTypeSatellite = NO;
         mapTypeRegular = NO;
         mapTypeTerrain = NO;
-        regionSave = YES;
     }
     
     if ([segue.identifier isEqualToString:@"satelliteView"]) {
@@ -118,7 +88,6 @@
         mapTypeRegular = NO;
         mapTypeHybrid = NO;
         mapTypeTerrain = NO;
-        regionSave = YES;
     }
     
     if ([segue.identifier isEqualToString:@"terrainView"]) {
@@ -126,7 +95,6 @@
         mapTypeRegular = NO;
         mapTypeSatellite = NO;
         mapTypeHybrid = NO;
-        regionSave = YES;
     }
 }
 
@@ -154,13 +122,6 @@
             syncMode = YES;
         }
     }
-    /*if (alert.tag == 4) {
-        if (buttonIndex == 0) {
-            DMode = NO;
-        } else if (buttonIndex == 1) {
-            DMode = YES;
-        }
-    }*/
 }
 
 - (IBAction)trafficModeSwitch:(id)sender {

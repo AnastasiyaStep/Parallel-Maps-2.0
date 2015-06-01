@@ -24,19 +24,15 @@
     
     if (indexPath.row == 3) {
         mapTypeTerrain = YES;
-        NSLog(@"terrain");
     }
     if (indexPath.row == 0) {
         mapTypeRegular = YES;
-        NSLog(@"regular");
     }
     if (indexPath.row == 1) {
         mapTypeSatellite = YES;
-        NSLog(@"satellite");
     }
     if (indexPath.row == 2) {
         mapTypeHybrid = YES;
-        NSLog(@"hybrid");
     }
     [self.navigationController pushViewController:mainController animated:YES];
 }

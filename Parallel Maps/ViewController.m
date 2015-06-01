@@ -42,7 +42,7 @@
     DirectionsManager *directionsManager;
 }
 
-@synthesize googleMapsView, mapKitView, geocoder, searchBtn, settingsBtn, sidebarButton, initialLocation, routeBtn, locateBtn, googleTransportMode;
+@synthesize googleMapsView, mapKitView, geocoder, searchBtn, settingsBtn, sidebarButton, initialLocation, routeBtn, locateBtn, googleTransportMode, slider;
 
 
 #pragma mark - notification system
@@ -63,6 +63,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"SyncOn" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"SyncOff" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"Directions" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"SliderBtn" object:nil];
     
     return self;
 }
@@ -99,8 +100,6 @@
         DMode = NO;
     }
     if ([[notification name] isEqualToString:@"SyncOn"]) {
-        NSLog(@"sync on");
-        
         double zoomLevel = [self getZoomLevel];
         GMSCameraPosition *camera1 = [GMSCameraPosition cameraWithLatitude:self.mapKitView.region.center.latitude longitude:self.mapKitView.region.center.longitude zoom:zoomLevel];
         googleMapsView.camera = camera1;
@@ -113,6 +112,9 @@
         [self googleDirectionsApiFrom:&locationFrom to:&locationTo animated:YES];
         
         [self.mapKitView setCenterCoordinate:locationFrom zoomLevel:14 animated:YES];
+    }
+    if ([[notification name] isEqualToString:@"SliderBtn"]) {
+        slider.value = 50;
     }
 }
 
@@ -147,8 +149,10 @@
     //maps settings
     
     mapKitView.delegate = self;
+    mapKitView.rotateEnabled = YES;
     //mapKitView.showsUserLocation = YES;
     
+    directionSearch = NO;
     self.googleMapsView.buildingsEnabled = NO;
     googleMapsView.myLocationEnabled = YES;
     googleMapsView.settings.compassButton = YES;
@@ -160,7 +164,7 @@
     //search segue, region, directions notification
     
     if (searchSegue == YES) {
-        if (self.mapItemList.count == 1) {
+        if (mapItemList.count == 1) {
             MKCoordinateRegion searchRegion;
             searchRegion.center = pinCoordinate;
             searchRegion.span = MKCoordinateSpanMake(0.0051, 0.0051);
@@ -181,7 +185,7 @@
             self.detailsButton.title = [NSString stringWithFormat:@"Latitude: %.2f, Longitude: %.2f", pinCoordinate.latitude, pinCoordinate.longitude];
         }
         else {
-            for (MKMapItem *item in self.mapItemList) {
+            for (MKMapItem *item in mapItemList) {
                 MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
                 annotation.coordinate = item.placemark.location.coordinate;
                 annotation.title = item.name;
@@ -200,11 +204,40 @@
                 [self.mapKitView setCenterCoordinate:item.placemark.location.coordinate zoomLevel:12 animated:YES];
             }
         }
+        searchSegue = NO;
+        directionSearch = YES;
     }
 
     if (regionSave == YES) {
         [mapKitView setRegion:globalRegion];
     }
+    
+    CGRect screen = [[UIScreen mainScreen] bounds];
+    CGFloat screenHeight = screen.size.height;
+    
+    slider = [[UISlider alloc] initWithFrame:CGRectMake(screenWidth/8, screenHeight/2, screenHeight - 300, 20)];
+    NSLog(@"%f %f %f %f", screenWidth, screenHeight, screenWidth/8, screenHeight - 300);
+    slider.transform = CGAffineTransformMakeRotation(-M_PI_2);
+
+    slider.minimumValue = 35.0;
+    slider.maximumValue = 65.0;
+    slider.continuous = YES;
+    slider.value = 50.0;
+    
+    //[slider setThumbImage:[UIImage imageNamed:@"handle.png"] forState:UIControlStateNormal];
+    //[slider addTarget:self action:@selector(sliderValueDidChanged:) forControlEvents:UIControlEventValueChanged];
+    [self xPositionFromSliderValue:slider];
+    [slider addTarget:self action:@selector(xPositionFromSliderValue:) forControlEvents:UIControlEventValueChanged];
+    [slider setBackgroundColor:[UIColor clearColor]];
+    UIImage *clearImage = [[UIImage alloc] init];
+    [slider setMinimumTrackImage:clearImage forState:UIControlStateNormal];
+    [slider setMaximumTrackImage:clearImage forState:UIControlStateNormal];
+    //slider.thumbTintColor = [UIColor clearColor];
+    
+    NSLog(@"%f %f %f %f %f %f", slider.frame.origin.x, slider.frame.origin.y, slider.frame.size.width, slider.frame.size.height, slider
+          .currentThumbImage.size.height, slider.currentThumbImage.size.width);
+    
+    [self.view addSubview:slider];
 }
 
 /*- (void)mapView:(MKMapView *)mapKitView didUpdateUserLocation:(MKUserLocation *)userLocation {
@@ -352,6 +385,23 @@
     [self.googleMapsView setCamera:camera];
     
     self.detailsButton.title = [NSString stringWithFormat:@"Latitude: %.2f, Longitude: %.2f", self.mapKitView.userLocation.coordinate.latitude, self.mapKitView.userLocation.coordinate.longitude];
+    
+   
+    slider.value = 50;
+    CGRect screen = [[UIScreen mainScreen] bounds];
+    
+    CGRect temp3 = self.sen.frame;
+    temp3.origin.y = screen.size.height/2 + 15;
+    self.sen.frame = temp3;
+    
+    CGRect temp = self.mapKitView.frame;
+    temp.size.height = screen.size.height/2 + 15;
+    self.mapKitView.frame = temp;
+    
+    CGRect temp1 = self.googleMapsView.frame;
+    temp1.origin.y = screen.size.height/2 + 15;
+    temp1.size.height = screen.size.height - mapKitView.frame.size.height;
+    self.googleMapsView.frame = temp1;
 }
 
 - (double)getZoomLevel {
@@ -381,30 +431,33 @@
 #pragma mark - map change delegates
 
 - (void)mapView:(MKMapView *)mapKitView regionWillChangeAnimated:(BOOL)animated {
-    //mapRegion = self.mapKitView.region;
+    
 }
 
 - (void)mapView:(MKMapView *)mapKitView regionDidChangeAnimated:(BOOL)animated {
+    MKMapCamera *camera = self.mapKitView.camera;
+    CLLocationDistance altitude = camera.altitude;
+    mapAngle = camera.heading;
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    if (self.sen.frame.origin.y <= screenRect.size.height/2 + 10 && self.sen.frame.origin.y >= screenRect.size.height/2 - 10) {
+        slider.value = 50;
+    }
+    
     double zoomLevel = [self getZoomLevel];
     syncFromMapKit = YES;
     
     if (mapRegion.center.latitude != self.mapKitView.region.center.latitude) {
         if (syncFromGoogleMap != YES) {
             if (syncMode == YES) {
-                //MKCoordinateRegion newRegion;
-                //newRegion = self.mapKitView.region;
-        
-                GMSCameraPosition *camera1 = [GMSCameraPosition cameraWithLatitude:self.mapKitView.region.center.latitude longitude:self.mapKitView.region.center.longitude zoom:zoomLevel];
-                googleMapsView.camera = camera1;
+                    GMSCameraPosition *camera1 = [GMSCameraPosition cameraWithLatitude:self.mapKitView.region.center.latitude longitude:self.mapKitView.region.center.longitude zoom:zoomLevel bearing:mapAngle viewingAngle:0];
+                    googleMapsView.camera = camera1;
             } else if (syncMode == NO){
                 //GMSCameraUpdate *camera2 = [GMSCameraUpdate zoomTo:zoomLevel];
                 //[googleMapsView animateWithCameraUpdate:camera2];
             }
         }
     }
-    
-    //NSLog(@"mkit apple zoom level = %f", zoomLevel);
-    //NSLog(@"mkit google zoom level = %f", googleMapsView.camera.zoom);
     
     globalCoordinate = CLLocationCoordinate2DMake(self.mapKitView.region.center.latitude, self.mapKitView.region.center.longitude);
     syncFromMapKit = NO;
@@ -413,19 +466,29 @@
 }
 
 - (void)mapView:(GMSMapView *)googleMapsView didChangeCameraPosition:(GMSCameraPosition *)position {
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    if (self.sen.frame.origin.y <= screenRect.size.height/2 + 10 && self.sen.frame.origin.y >= screenRect.size.height/2 - 10) {
+        slider.value = 50;
+    }
+    
+    CLLocationDirection bearingAngle = self.googleMapsView.camera.bearing;
+    
     syncFromGoogleMap = YES;
     if (syncFromMapKit != YES) {
         
         if (syncMode == YES) {
-            CLLocationCoordinate2D centerCoord = {position.target.latitude, position.target.longitude};
-            [mapKitView setCenterCoordinate:centerCoord zoomLevel:self.googleMapsView.camera.zoom-1 animated:NO];
+            if (mapAngle <= 0.05 || mapAngle >= 359) {
+                CLLocationCoordinate2D centerCoord = {position.target.latitude, position.target.longitude};
+                [mapKitView setCenterCoordinate:centerCoord zoomLevel:self.googleMapsView.camera.zoom-1 animated:NO];
+            } else if (bearingAngle == 0){
+                //[self.googleMapsView animateToBearing:mapAngle];
+                MKMapCamera *newCamera = [[mapKitView camera] copy];
+                [newCamera setHeading:bearingAngle]; // or newCamera.heading + 90.0 % 360.0
+                [mapKitView setCamera:newCamera animated:YES];
+            }
         } else {
             //[mapKitView setZoom:self.googleMapsView.camera.zoom mapView:mapKitView animated:NO];
         }
-        
-        //NSLog(@"ggl apple zoom level = %f", zoomLevel);
-        //NSLog(@"ggl google zoom level = %f", self.googleMapsView.camera.zoom);
-        
     }
     syncFromGoogleMap = NO;
 }
@@ -481,8 +544,6 @@
             if ([placemark.areasOfInterest count] > 0) {
                 NSString *areaOfInterest = [placemark.areasOfInterest objectAtIndex:0];
                 self.toolbarText.title = areaOfInterest;
-            } else {
-                //NSLog(@"No area of interest was found");
             }
             
             annotation.title = annTitle;
@@ -499,7 +560,6 @@
             for (CLPlacemark *placemark in placemarks) {
                 CLPlacemark *placemark = [placemarks objectAtIndex:0];
                 NSDictionary *addressDictionary = placemark.addressDictionary;
-                //NSLog(@"address dictionary %@", addressDictionary);
                 NSString *annTitle = @"Address unknown";
                 
                 NSString *address = [addressDictionary
@@ -592,7 +652,6 @@
         if (mapKitView.overlays) {
             [self.googleMapsView clear];
         }
-        
             GMSMarker *marker = [GMSMarker markerWithPosition:coordinate];
             marker.title = [NSString stringWithFormat:@"%@, %@", city, state];
             marker.snippet = [NSString stringWithFormat:@"%@, %@", address, zip];
@@ -843,9 +902,7 @@
     [NSURLConnection sendAsynchronousRequest:requestGoogle queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (connectionError) {
             NSLog(@"request google error");
-            
         } else {
-            
             NSError *error = nil;
             NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
             NSString *routeAvailable = [result objectForKey:@"status"];
@@ -911,7 +968,6 @@
 #pragma mark - route steps toolbar
 
 - (IBAction)showRouteSteps:(id)sender {
-    
     if (self.mapKitView.overlays) {
         /*CGRect screenRect = [[UIScreen mainScreen] bounds];
         CGFloat screenWidth = screenRect.size.width;
@@ -943,7 +999,7 @@
         vc2.selectedRoute = _selectedRoute;
         [self.navigationController pushViewController:vc2 animated:YES];
     }
-    else if (searchSegue == YES) {
+    else if (directionSearch == YES) {
         CLLocationCoordinate2D coordInit = CLLocationCoordinate2DMake(self.mapKitView.userLocation.coordinate.latitude, self.mapKitView.userLocation.coordinate.longitude);
         [self directionsFrom:&coordInit to:&pinCoordinate animated:YES];
         [self googleDirectionsApiFrom:&coordInit to:&pinCoordinate animated:YES];
@@ -1001,7 +1057,6 @@
         CGRect _f = self.routeInfoBg.frame;
         _f.origin.y = 568.0f;
         self.routeInfoBg.frame = _f;
-        
     } completion:^(BOOL finished) {
         if (finished) {
             [self.routeInfoBg removeFromSuperview];
@@ -1010,6 +1065,68 @@
             [controller removeFromParentViewController];
         }
     }];
+}
+
+#pragma mark - slider
+
+- (float)xPositionFromSliderValue:(UISlider *)aSlider
+{
+    //NSLog(@"%f",value);
+    
+    float sliderRange = aSlider.frame.size.height - aSlider.currentThumbImage.size.height;
+    float sliderOrigin = aSlider.frame.origin.y + (aSlider.currentThumbImage.size.height / 2.0);
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    
+    float sliderValueToPixels = (((aSlider.value-aSlider.minimumValue)/(aSlider.maximumValue-aSlider.minimumValue)) * sliderRange) + sliderOrigin;
+    
+    if (self.mapKitView.frame.size.height > 150 || self.googleMapsView.frame.origin.y < 350) {
+        
+        if (aSlider.value > 55) {
+            CGRect temp3 = self.sen.frame;
+            temp3.origin.y = screenRect.size.height - sliderValueToPixels + 35;
+            self.sen.frame = temp3;
+        
+            CGRect temp = self.mapKitView.frame;
+            temp.size.height = screenRect.size.height - sliderValueToPixels + 35;
+            self.mapKitView.frame = temp;
+        
+            CGRect temp1 = self.googleMapsView.frame;
+            temp1.origin.y = screenRect.size.height - sliderValueToPixels + 35;
+            temp1.size.height = screenRect.size.height - mapKitView.frame.size.height;
+            self.googleMapsView.frame = temp1;
+            
+        } else if (aSlider.value < 45){
+            CGRect temp3 = self.sen.frame;
+            temp3.origin.y = screenRect.size.height - sliderValueToPixels + 5;
+            self.sen.frame = temp3;
+            
+            CGRect temp = self.mapKitView.frame;
+            temp.size.height = screenRect.size.height - sliderValueToPixels + 5;
+            self.mapKitView.frame = temp;
+            
+            CGRect temp1 = self.googleMapsView.frame;
+            temp1.origin.y = screenRect.size.height - sliderValueToPixels + 5;
+            temp1.size.height = screenRect.size.height - mapKitView.frame.size.height;
+            self.googleMapsView.frame = temp1;
+            
+        } else {
+            CGRect temp3 = self.sen.frame;
+            temp3.origin.y = screenRect.size.height - sliderValueToPixels + 15;
+            self.sen.frame = temp3;
+            
+            CGRect temp = self.mapKitView.frame;
+            temp.size.height = screenRect.size.height - sliderValueToPixels + 15;
+            self.mapKitView.frame = temp;
+            
+            CGRect temp1 = self.googleMapsView.frame;
+            temp1.origin.y = screenRect.size.height - sliderValueToPixels + 15;
+            temp1.size.height = screenRect.size.height - mapKitView.frame.size.height;
+            self.googleMapsView.frame = temp1;
+        }
+        //NSLog(@"%f", aSlider.value);
+    }
+    return sliderValueToPixels;
 }
 
 @end

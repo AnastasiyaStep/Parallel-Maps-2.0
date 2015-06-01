@@ -79,6 +79,7 @@
                         <outlet property="detailsButton" destination="Dsq-gz-5Uy" id="Nkf-Y1-9BJ"/>
                         <outlet property="googleMapsView" destination="Hjq-nT-hhg" id="Gus-WF-Lmx"/>
                         <outlet property="mapKitView" destination="rSx-ur-lJ5" id="7JU-7t-5QJ"/>
+                        <outlet property="sen" destination="Qd7-WH-1ba" id="9AS-Ym-xmQ"/>
                         <outlet property="sidebarButton" destination="J9b-eV-nnE" id="i81-5M-asp"/>
                         <outlet property="toolbarText" destination="QLE-wx-cBf" id="MD8-KC-cES"/>
                     </connections>
@@ -692,15 +693,15 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sVT-ef-Dyo" id="LVg-I9-joc">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home" translatesAutoresizingMaskIntoConstraints="NO" id="ElK-nh-2rC">
+                                                    <rect key="frame" x="23" y="3" width="38" height="38"/>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Maps" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hL4-D6-nAn">
-                                                    <rect key="frame" x="69" y="12" width="432" height="21"/>
+                                                    <rect key="frame" x="69" y="11" width="432" height="21"/>
                                                     <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home" translatesAutoresizingMaskIntoConstraints="NO" id="ElK-nh-2rC">
-                                                    <rect key="frame" x="23" y="3" width="38" height="38"/>
-                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>

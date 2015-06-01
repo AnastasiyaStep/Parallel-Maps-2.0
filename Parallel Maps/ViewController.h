@@ -31,12 +31,14 @@
 @property (nonatomic, retain) MKPolyline* routeLine;
 @property (nonatomic, retain) MKPolylineView* routeLineView;
 @property (nonatomic, assign) CLLocationCoordinate2D from, to;
-@property (nonatomic, strong) NSArray *mapItemList;
+//@property (nonatomic, strong) NSArray *mapItemList;
 @property (nonatomic, assign) MKCoordinateRegion boundingRegion;
 @property NSMutableArray *detailSteps;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (nonatomic, retain) CLLocation *initialLocation;
 @property (nonatomic, retain) NSString *googleTransportMode;
+@property (nonatomic, assign) float lastSlidedValue;
+@property (nonatomic, retain) UISlider *slider;
 
 - (MKCoordinateSpan)coordinateSpanWithMapView:(MKMapView *)mapView
                              centerCoordinate:(CLLocationCoordinate2D)centerCoordinate
@@ -64,6 +66,8 @@
 - (void)removeDirections;
 
 - (void)dealloc;
+
+@property (weak, nonatomic) IBOutlet UILabel *sen;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *detailsButton;
 

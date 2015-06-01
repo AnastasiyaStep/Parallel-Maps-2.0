@@ -57,7 +57,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"NaviCell" forIndexPath:indexPath];
-    NSLog(@"here");
     MKRouteStep *step = [self.selectedRoute.steps objectAtIndex:indexPath.row];
     cell.textLabel.text = step.instructions;
     cell.detailTextLabel.text = step.notice;
