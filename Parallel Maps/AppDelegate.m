@@ -24,6 +24,8 @@
     pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
     pageControl.backgroundColor = [UIColor whiteColor];
     
+    //UIFont *font = [UIFont fontWithName:NSLocalizedString(@"Arial", nil) size:16];
+    
     return YES;
 }
 
