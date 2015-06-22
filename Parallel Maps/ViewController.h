@@ -21,12 +21,13 @@
 #import "GQTPointQuadTreeItem.h"
 
 @interface ViewController : UIViewController <GMSMapViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate> {
-    CLGeocoder *geocoder;
+    CLGeocoder *geocoder, *geocoder1;
 }
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapKitView;
 @property (strong, nonatomic) IBOutlet GMSMapView *googleMapsView;
 @property (nonatomic, strong) CLGeocoder *geocoder;
+@property (nonatomic, strong) CLGeocoder *geocoder1;
 @property (nonatomic, strong) UIButton *searchBtn, *routeBtn, *dViewButton1, *dViewButton2, *settingsBtn, *synchronisationBtn, *locateBtn;
 @property (nonatomic, retain) MKPolyline* routeLine;
 @property (nonatomic, retain) MKPolylineView* routeLineView;

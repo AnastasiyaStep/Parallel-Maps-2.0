@@ -60,7 +60,7 @@
 "GzT-Pa-0py.title" = "Location Details ";
 
 /* Class = "UILabel"; text = "3D view"; ObjectID = "HeQ-JQ-xKu"; */
-"HeQ-JQ-xKu.text" = "3D-карта";
+"HeQ-JQ-xKu.text" = "3D - карта";
 
 /* Class = "UILabel"; text = "Address:"; ObjectID = "Ie8-dR-jD6"; */
 "Ie8-dR-jD6.text" = "Адрес:";

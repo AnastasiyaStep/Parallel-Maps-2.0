@@ -32,7 +32,7 @@
     NSString *streetLocation = [NSString stringWithFormat:@"%f, %f", pinCoordinate.latitude, pinCoordinate.longitude];
     //self.navigationItem.title = streetLocation;
     [self requestPanoramaNearCoordinate:pinCoordinate radius:100 callback:^(GMSPanorama *panorama, NSError *error) {
-        NSLog(@"panorama = %@ erroer", panorama);
+        NSLog(@"panorama = %@ error", panorama);
     }];
     [panoView moveNearCoordinate:CLLocationCoordinate2DMake(pinCoordinate.latitude, pinCoordinate.longitude) radius:1000];
 }

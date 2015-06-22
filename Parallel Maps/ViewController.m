@@ -42,7 +42,7 @@
     DirectionsManager *directionsManager;
 }
 
-@synthesize googleMapsView, mapKitView, geocoder, searchBtn, settingsBtn, sidebarButton, initialLocation, routeBtn, locateBtn, googleTransportMode, slider;
+@synthesize googleMapsView, mapKitView, geocoder, geocoder1, searchBtn, settingsBtn, sidebarButton, initialLocation, routeBtn, locateBtn, googleTransportMode, slider;
 
 
 #pragma mark - notification system
@@ -108,6 +108,7 @@
         NSLog(@"sync off");
     }
     if ([[notification name] isEqualToString:@"Directions"]) {
+        [self drawingPinsInStart:&locationFrom Finish:&locationTo];
         [self directionsFrom:&locationFrom to:&locationTo animated:YES];
         [self googleDirectionsApiFrom:&locationFrom to:&locationTo animated:YES];
         
@@ -175,14 +176,65 @@
             [self.mapKitView addAnnotation:annotation];
             //[self.mapKitView selectAnnotation:[self.mapKitView.annotations objectAtIndex:0] animated:YES];
         
-            GMSMarker *marker = [GMSMarker markerWithPosition:pinCoordinate];
-            marker.appearAnimation = kGMSMarkerAnimationPop;
-            marker.map = googleMapsView;
-        
-            //for(GMSMarker *marker in markers)
-        
             bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:pinCoordinate coordinate:pinCoordinate];
             self.detailsButton.title = [NSString stringWithFormat:@"Latitude: %.2f, Longitude: %.2f", pinCoordinate.latitude, pinCoordinate.longitude];
+            
+            CLLocation *pinLoc = [[CLLocation alloc] initWithLatitude:pinCoordinate.latitude longitude:pinCoordinate.longitude];
+            
+            if (!self.geocoder) {
+                self.geocoder = [[CLGeocoder alloc] init];
+            }
+            
+            [self.geocoder reverseGeocodeLocation:pinLoc completionHandler:^(NSArray *placemarks, NSError *error) {
+                NSString *annTitle = @"Address unknown";
+                if ([placemarks count] > 0) {
+                    CLPlacemark *placemark = [placemarks objectAtIndex:0];
+                    
+                    annTitle = [NSString stringWithFormat:@"%@, %@", placemark.country, placemark.locality];
+                    
+                    if ([placemark.areasOfInterest count] > 0) {
+                        NSString *areaOfInterest = [placemark.areasOfInterest objectAtIndex:0];
+                        self.toolbarText.title = areaOfInterest;
+                    }
+                    
+                    annotation.title = annTitle;
+                    annotation.subtitle = [NSString stringWithFormat:@"%@, %@, %@", placemark.subLocality, placemark.thoroughfare, placemark.description];
+                    address = placemark.subLocality;
+                    
+                    [self.mapKitView removeAnnotations:self.mapKitView.annotations];
+                    [self.mapKitView addAnnotation:annotation];
+                    
+                    if (mapKitView.overlays) {
+                        [self.googleMapsView clear];
+                    }
+                    
+                    for (CLPlacemark *placemark in placemarks) {
+                        CLPlacemark *placemark = [placemarks objectAtIndex:0];
+                        NSDictionary *addressDictionary = placemark.addressDictionary;
+                        NSString *annTitle = @"Address unknown";
+                        
+                        NSString *address = [addressDictionary
+                                             objectForKey:(NSString *)kABPersonAddressStreetKey];
+                        NSString *city = [addressDictionary
+                                          objectForKey:(NSString *)kABPersonAddressCityKey];
+                        NSString *state = [addressDictionary
+                                           objectForKey:(NSString *)kABPersonAddressStateKey];
+                        NSString *zip = [addressDictionary
+                                         objectForKey:(NSString *)kABPersonAddressZIPKey];
+                        
+                        if (mapKitView.overlays) {
+                            [self.googleMapsView clear];
+                        }
+                        
+                        GMSMarker *marker = [GMSMarker markerWithPosition:pinCoordinate];
+                        marker.title = [NSString stringWithFormat:@"%@, %@", city, state];
+                        marker.snippet = [NSString stringWithFormat:@"%@, %@", address, zip];
+                        marker.appearAnimation = kGMSMarkerAnimationPop;
+                        marker.map = self.googleMapsView;
+                    };
+                }
+            }];
+
         }
         else {
             for (MKMapItem *item in mapItemList) {
@@ -275,7 +327,6 @@
 //}
 
 - (void)viewDidLoad {
-    
     NSString *currentBundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     NSString *previousBundleVersion = [[NSUserDefaults standardUserDefaults] objectForKey:@"PreviousBundleVersion"];
     
@@ -316,16 +367,10 @@
     lpgr.minimumPressDuration = 1.0;
     [self.mapKitView addGestureRecognizer:lpgr];
     
-    /*UILongPressGestureRecognizer *lpgr2 = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress2:)];
-    lpgr2.minimumPressDuration = 1.0;
-    [self.googleMapsView addGestureRecognizer:lpgr2];
-     */
-    
     SWRevealViewController *revealViewController = self.revealViewController;
     if (revealViewController) {
         [self.sidebarButton setTarget:self.revealViewController];
         [self.sidebarButton setAction:@selector(revealToggle:)];
-        //[self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     } else {
         SWRevealViewController *revealViewController = self.revealViewController;
         [self.sidebarButton setTarget:self.revealViewController];
@@ -386,7 +431,6 @@
     
     self.detailsButton.title = [NSString stringWithFormat:@"Latitude: %.2f, Longitude: %.2f", self.mapKitView.userLocation.coordinate.latitude, self.mapKitView.userLocation.coordinate.longitude];
     
-   
     slider.value = 50;
     CGRect screen = [[UIScreen mainScreen] bounds];
     
@@ -426,7 +470,6 @@
     NSLog(@"Error: %@", error.description);
     return;
 }
-
 
 #pragma mark - map change delegates
 
@@ -647,8 +690,6 @@
                                objectForKey:(NSString *)kABPersonAddressStateKey];
             NSString *zip = [addressDictionary
                              objectForKey:(NSString *)kABPersonAddressZIPKey];
-            
-           //NSLog(@"%@ %@ %@ %@", address,city, state, zip);
         if (mapKitView.overlays) {
             [self.googleMapsView clear];
         }
@@ -692,16 +733,7 @@
 }
 
 - (void)mapView:(MKMapView *)mapKitView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-    /*[self performSegueWithIdentifier:@"DetailsIphone" sender:view];
-    UINavigationController *detailsNavController = [self.storyboard instantiateViewControllerWithIdentifier:@"detailsNavigationController"];
-    DetailsViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"detailsPage"];
-    //DetailsViewController *controller = [[DetailsViewController alloc] initWithNibName:@"DetailsPopover" bundle:nil];
-    [detailsNavController pushViewController:controller animated:YES];
-    //[detailsNavController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-    //[self presentViewController:detailsNavController animated:YES completion:NULL];
-    [self setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-    //[self presentModalViewController:controller animated:YES];
-    [self presentViewController:controller animated:YES completion:nil];*/
+    
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapKitView rendererForOverlay:(id<MKOverlay>)overlay {
@@ -717,21 +749,6 @@
 }
 
 #pragma mark - others
-
-- (void)dViewButtonDidTap2:(UIButton *)tappedButton {
-    self.googleMapsView.buildingsEnabled = YES;
-    [googleMapsView animateToViewingAngle:45];
-}
-
-- (void)dViewButtonDidTap1:(UIButton *)tappedButton {
-    self.mapKitView.showsBuildings = YES;
-    MKMapCamera *mapCamera = [[MKMapCamera alloc] init];
-    mapCamera.centerCoordinate = mapKitView.centerCoordinate;
-    mapCamera.pitch = 45;
-    mapCamera.altitude = 200;
-    //mapCamera.heading = 45;
-    self.mapKitView.camera = mapCamera;
-}
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:YES];
@@ -751,22 +768,20 @@
     
     CLLocation *rendLoc = [[CLLocation alloc] initWithLatitude:locationFrom.latitude longitude:locationFrom.longitude];
     
-    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    /*MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     annotation.coordinate = locationFrom;
     [self.mapKitView addAnnotation:annotation];
     
     MKPointAnnotation *annotation1 = [[MKPointAnnotation alloc] init];
-    annotation1
-    .coordinate = locationTo;
+    annotation1.coordinate = locationTo;
     [self.mapKitView addAnnotation:annotation1];
-    
+    */
     [self.geocoder reverseGeocodeLocation:rendLoc completionHandler:^(NSArray *placemarks, NSError *error) {
         if (error) {
             NSLog(@"Geocode failed with error");
             return;
         }
         
-    //for (CLPlacemark *placemark in placemarks) {
             CLPlacemark *placemark = [placemarks objectAtIndex:0];
             NSDictionary *addressDictionary = placemark.addressDictionary;
             NSLog(@"address dictionary %@", addressDictionary);
@@ -792,7 +807,6 @@
                 }
             }];
             marker.map = googleMapsView;
-       // }
     }];
     
     MKPlacemark *source = [[MKPlacemark alloc] initWithCoordinate:*from addressDictionary:[NSDictionary dictionaryWithObjectsAndKeys:@"",@"", nil]];
@@ -821,7 +835,6 @@
     } else {
         [request setTransportType:MKDirectionsTransportTypeAny];
     }
-    //NSLog(@"request = %@", request);
     
     MKDirections *direction1 = [[MKDirections alloc] initWithRequest:request];
     [direction1 calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
@@ -838,10 +851,8 @@
             [self.mapKitView addOverlay:line];
             //NSLog(@"Route Name : %@",rout.name);
             //NSLog(@"Total Distance (in Meters) :%f",rout.distance);
-            
-            NSArray *steps = [rout steps];
-            
             //NSLog(@"Total Steps : %lu",(unsigned long)[steps count]);
+            NSArray *steps = [rout steps];
             
             [steps enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 //NSLog(@"Rout Instruction : %@",[obj instructions]);
@@ -871,21 +882,102 @@
     }];
 }
 
+- (void)drawingPinsInStart:(CLLocationCoordinate2D *)start
+                    Finish:(CLLocationCoordinate2D *)finish {
+    CLLocation *initLoc = [[CLLocation alloc] initWithLatitude:start->latitude longitude:start->longitude];
+    CLLocation *finLoc = [[CLLocation alloc] initWithLatitude:finish->latitude longitude:finish->longitude];
+    
+    //apple annotations
+    if (!self.geocoder1) {
+        self.geocoder1 = [[CLGeocoder alloc] init];
+    }
+    if (!self.geocoder) {
+        self.geocoder = [[CLGeocoder alloc] init];
+    }
+    
+    [self.geocoder1 reverseGeocodeLocation:initLoc completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (error) {
+            NSLog(@"Geocode failed with error");
+            return;
+        }
+        MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+        annotation.coordinate = initLoc.coordinate;
+        [self.mapKitView addAnnotation:annotation];
+
+        for (CLPlacemark *placemark in placemarks) {
+            CLPlacemark *placemark = [placemarks objectAtIndex:0];
+            NSDictionary *addressDictionary = placemark.addressDictionary;
+            
+            NSString *annTitle = @"Address unknown";
+            NSString *address = [addressDictionary objectForKey:(NSString *)kABPersonAddressStreetKey];
+            NSString *city = [addressDictionary objectForKey:(NSString *)kABPersonAddressCityKey];
+            NSString *state = [addressDictionary objectForKey:(NSString *)kABPersonAddressStateKey];
+            NSString *zip = [addressDictionary objectForKey:(NSString *)kABPersonAddressZIPKey];
+            annTitle = [NSString stringWithFormat:@"%@, %@", placemark.country, placemark.locality];
+            
+            if (mapKitView.overlays) {
+                [self.googleMapsView clear];
+            }
+            annotation.title = annTitle;
+            annotation.subtitle = [NSString stringWithFormat:@"%@, %@, %@", placemark.subLocality, placemark.thoroughfare, placemark.description];
+            
+            GMSMarker *marker1 = [GMSMarker markerWithPosition:initLoc.coordinate];
+            marker1.title = [NSString stringWithFormat:@"%@, %@", city, state];
+            marker1.snippet = [NSString stringWithFormat:@"%@, %@", address, zip];
+            marker1.appearAnimation = kGMSMarkerAnimationPop;
+            marker1.map = self.googleMapsView;
+        }
+    }];
+
+    [self.geocoder reverseGeocodeLocation:finLoc completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (error) {
+            NSLog(@"Geocode failed with error");
+            return;
+        }
+        MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+        annotation.coordinate = finLoc.coordinate;
+        [self.mapKitView addAnnotation:annotation];
+        
+        for (CLPlacemark *placemark in placemarks) {
+            CLPlacemark *placemark = [placemarks objectAtIndex:0];
+            NSDictionary *addressDictionary = placemark.addressDictionary;
+            NSString *annTitle = @"Address unknown";
+            NSString *address = [addressDictionary objectForKey:(NSString *)kABPersonAddressStreetKey];
+            NSString *city = [addressDictionary objectForKey:(NSString *)kABPersonAddressCityKey];
+            NSString *state = [addressDictionary objectForKey:(NSString *)kABPersonAddressStateKey];
+            NSString *zip = [addressDictionary objectForKey:(NSString *)kABPersonAddressZIPKey];
+            annTitle = [NSString stringWithFormat:@"%@, %@", placemark.country, placemark.locality];
+            
+            if (mapKitView.overlays) {
+                [self.googleMapsView clear];
+            }
+            
+            annotation.title = annTitle;
+            annotation.subtitle = [NSString stringWithFormat:@"%@, %@, %@", placemark.subLocality, placemark.thoroughfare, placemark.description];
+            
+            GMSMarker *marker = [GMSMarker markerWithPosition:finLoc.coordinate];
+            marker.title = [NSString stringWithFormat:@"%@, %@", city, state];
+            marker.snippet = [NSString stringWithFormat:@"%@, %@", address, zip];
+            marker.appearAnimation = kGMSMarkerAnimationPop;
+            marker.map = self.googleMapsView;
+        }
+    }];
+}
+
 - (void)googleDirectionsApiFrom:(CLLocationCoordinate2D *)from
-                              to:(CLLocationCoordinate2D *)to
-                        animated:(BOOL)animated {
+                             to:(CLLocationCoordinate2D *)to
+                       animated:(BOOL)animated {
     CLLocation *initLoc = [[CLLocation alloc] initWithLatitude:from->latitude longitude:from->longitude];
     CLLocation *finLoc = [[CLLocation alloc] initWithLatitude:to->latitude longitude:to->longitude];
     
-    
-    GMSMarker *marker = [GMSMarker markerWithPosition:initLoc.coordinate];
+    /*GMSMarker *marker = [GMSMarker markerWithPosition:initLoc.coordinate];
     marker.appearAnimation = kGMSMarkerAnimationPop;
     //marker.title = item.name;
     marker.map = googleMapsView;
     
     GMSMarker *marker1 = [GMSMarker markerWithPosition:finLoc.coordinate];
     marker1.appearAnimation = kGMSMarkerAnimationPop;
-    marker1.map = googleMapsView;
+    marker1.map = googleMapsView;*/
     
     if (drivingMode == YES) {
         googleTransportMode = @"driving";
@@ -914,7 +1006,7 @@
             
             NSDictionary *firstRoute = [routes objectAtIndex:0];
             
-            NSDictionary *leg =  [[firstRoute objectForKey:@"legs"] objectAtIndex:0];
+            NSDictionary *leg = [[firstRoute objectForKey:@"legs"] objectAtIndex:0];
             
             NSDictionary *end_location = [leg objectForKey:@"end_location"];
             double latitude = [[end_location objectForKey:@"lat"] doubleValue];
@@ -945,8 +1037,6 @@
                     }
                 }
             
-                //MKPolyline *polyLine = [MKPolyline polylineWithCoordinates:stepCoordinates count:1 + stepIndex];
-            
                 GMSMutablePath *path2 = [GMSMutablePath path];
             
                 for (stepIndex = 0; stepIndex <= [steps count] + 1; stepIndex++) {
@@ -958,43 +1048,12 @@
             }
         }
     }];
-
-}
-
-- (void)removeDirections {
-    
 }
 
 #pragma mark - route steps toolbar
 
 - (IBAction)showRouteSteps:(id)sender {
     if (self.mapKitView.overlays) {
-        /*CGRect screenRect = [[UIScreen mainScreen] bounds];
-        CGFloat screenWidth = screenRect.size.width;
-        CGFloat screenHeight = screenRect.size.height;
-    
-        UINavigationController *vc = (UINavigationController *)[self.storyboard instantiateViewControllerWithIdentifier:@"routeNavigationController"];
-        RouteStepsViewController *vc2 = (RouteStepsViewController*)[vc topViewController];
-        vc2.selectedRoute = _selectedRoute;
-        vc2.delegate = self;
-    
-        vc.view.frame = CGRectMake(0, 0, screenWidth, screenHeight);
-    
-        self.routeInfoBg = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.origin.y - 100, self.view.frame.size.width, self.view.frame.size.height)];
-        self.routeInfoBg.frame = CGRectMake(0, self.view.frame.origin.y - 100, screenWidth, screenHeight);
-        [self.routeInfoBg addSubview:vc.view];
-    
-        [self.view addSubview:self.routeInfoBg];
-    
-        [UIView animateWithDuration:0.3f animations:^{
-            CGRect _f = self.routeInfoBg.frame;
-            _f.origin.y = 100;
-            self.routeInfoBg.frame = _f;
-        } completion:^(BOOL finished) {
-            [self addChildViewController:vc];
-            [vc didMoveToParentViewController:self];
-        }];*/
-        
         RouteStepsViewController *vc2 = [self.storyboard instantiateViewControllerWithIdentifier:@"routeSteps"];
         vc2.selectedRoute = _selectedRoute;
         [self.navigationController pushViewController:vc2 animated:YES];
@@ -1025,31 +1084,8 @@
     }];
 }
 
-- (IBAction)showDetails:(id)sender {/*
-    UINavigationController *vc = (UINavigationController *)[self.storyboard instantiateViewControllerWithIdentifier:@"detailsNavigationController"];
-    DetailsViewController *vc2 = (DetailsViewController*)[vc topViewController];
-    vc2.delegate = self;
-    
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenWidth = screenRect.size.width;
-    CGFloat screenHeight = screenRect.size.height;
-    
-    vc.view.frame = CGRectMake(0, 0, screenWidth, screenHeight-10);
-    
-    self.routeInfoBg = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
-    self.routeInfoBg.frame = CGRectMake(0, screenHeight-44, screenWidth, screenHeight-100);
-    [self.routeInfoBg addSubview:vc.view];
-    
-    [self.view addSubview:self.routeInfoBg];
-    
-    [UIView animateWithDuration:0.3f animations:^{
-        CGRect _f = self.routeInfoBg.frame;
-        _f.origin.y = 100;
-        self.routeInfoBg.frame = _f;
-    } completion:^(BOOL finished) {
-        [self addChildViewController:vc];
-        [vc didMoveToParentViewController:self];
-    }];*/
+- (IBAction)showDetails:(id)sender {
+    //comment
 }
 
 - (void)didDetailsViewControllerClosed:(DetailsViewController*)controller {
@@ -1072,7 +1108,6 @@
 - (float)xPositionFromSliderValue:(UISlider *)aSlider
 {
     //NSLog(@"%f",value);
-    
     float sliderRange = aSlider.frame.size.height - aSlider.currentThumbImage.size.height;
     float sliderOrigin = aSlider.frame.origin.y + (aSlider.currentThumbImage.size.height / 2.0);
     
