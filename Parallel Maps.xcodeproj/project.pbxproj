@@ -116,6 +116,8 @@
 		45C5F8141ACBD9950078540B /* DirectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionsViewController.h; sourceTree = "<group>"; };
 		45C5F8151ACBD9950078540B /* DirectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionsViewController.m; sourceTree = "<group>"; };
 		45D2F7941AFC92D400B3B89D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		45D2F7961AFCB65D00B3B89D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		45D2F7971AFCB65D00B3B89D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		45E85F9D1AF1FDAC00C5D5A6 /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
 		45E85F9E1AF1FDAC00C5D5A6 /* image(2).jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image(2).jpg"; sourceTree = "<group>"; };
 		45E85F9F1AF1FDAC00C5D5A6 /* image(3).jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image(3).jpg"; sourceTree = "<group>"; };
@@ -524,6 +526,7 @@
 			children = (
 				4559A3DB1AAD38D900FDB66E /* Base */,
 				45E85FA51AF2167C00C5D5A6 /* ja */,
+				45D2F7961AFCB65D00B3B89D /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -533,6 +536,7 @@
 			children = (
 				4559A3E01AAD38D900FDB66E /* Base */,
 				45E85FA61AF2167C00C5D5A6 /* ja */,
+				45D2F7971AFCB65D00B3B89D /* ru */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -627,7 +631,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Anastasiya Stepanova (JTK2G2D5QC)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Anastasiya Stepanova (JTK2G2D5QC)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -649,7 +653,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: GOGA, Inc. (ULR5P2UEKG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: GOGA, Inc. (ULR5P2UEKG)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
